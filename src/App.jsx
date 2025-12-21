@@ -31,6 +31,7 @@ const translations = {
     "app.storage.mode": "Storage Mode",
     "app.storage.local": "Local Storage",
     "app.storage.firestore": "Google Firestore",
+    "app.storage.not_configured": "Not Configured",
 
     "nav.dashboard": "Dashboard",
     "nav.data": "Data Management",
@@ -173,6 +174,7 @@ const translations = {
     "app.storage.mode": "Chế độ lưu trữ",
     "app.storage.local": "Lưu trữ nội bộ",
     "app.storage.firestore": "Google Firestore",
+    "app.storage.not_configured": "Chưa cấu hình",
 
     "nav.dashboard": "Bảng điều khiển",
     "nav.data": "Quản lý dữ liệu",
@@ -4819,13 +4821,20 @@ function App() {
                         </div>
                         <div className="relative inline-block text-left">
                             <select
+                                // Thêm key={language} vào đây. Khi language thay đổi (en <-> vi), 
+                                // React sẽ hủy select cũ và vẽ lại select mới cùng các option mới.
+                                key={currentLanguage} 
                                 className="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-800"
                                 value={dataStorageMode}
-                                disabled={!isFirebaseEnabled} // Sẽ disable nếu config lỗi
+                                // Sửa disable ở đây: chỉ disable khi không có firebase và 
+                                // ĐANG KHÔNG ở chế độ firestore để người dùng có thể thoát ra chọn 'local'
+                                disabled={!isFirebaseEnabled && dataStorageMode !== 'firestore'}
                                 onChange={(e) => setDataStorageMode(e.target.value)}
                             >
                                 <option value="local">{t('app.storage.local')}</option>
-                                <option value="firestore">{t('app.storage.firestore')}</option>
+                                <option value="firestore" disabled={!isFirebaseEnabled}>
+                                    {t('app.storage.firestore')} {!isFirebaseEnabled && `(${t('app.storage.not_configured') || 'Chưa cấu hình'})`}
+                                </option>
                             </select>
                         </div>
                         <button
