@@ -3261,7 +3261,7 @@ function App() {
         } catch (error) {
             console.error("Firebase fail-safe triggered:", error);
             setIsFirebaseEnabled(false);
-            setDataStorageMode('local')}
+            setDataStorageMode('local');
             showMessage('Hệ thống', 'Firebase chưa được cấu hình. Chế độ Lưu trữ đám mây sẽ bị vô hiệu hóa.', 'warning');
         }
     }, [showMessage]);
