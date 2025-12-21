@@ -16,8 +16,13 @@ const TRAINING_PERIOD = 14;
 const LEADING_PERIOD = 7;
 const PREDICTING_PERIOD = 7;
 // Khai báo biến môi trường mới
+const appId = "ground-water_firestore-app"; // typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 const FETCH_API_URL = import.meta.env.VITE_HDVO_API_URL;
 const FETCH_CLIENT_KEY = import.meta.env.VITE_FETCH_CLIENT_KEY;
+const firebaseConfig = import.meta.env.VITE_FIREBASE_API_KEY; // typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+const initialAuthToken = (typeof window !== 'undefined' && window.__initial_auth_token) 
+                         ? window.__initial_auth_token 
+                         : null;
 
 const translations = {
   en: {
@@ -2949,9 +2954,7 @@ const StatisticalValidationTab = React.memo(({
 
 
 function App() {
-    const appId = "ground-water_firestore-app"; // typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-    const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+    const [isFirebaseEnabled, setIsFirebaseEnabled] = useState(false);
     
     // QUẢN LÝ NGÔN NGỮ (Mặc định: Tiếng Anh)
     // [THAY ĐỔI]: Khởi tạo ngôn ngữ từ LocalStorage hoặc mặc định là 'en'
@@ -3178,79 +3181,89 @@ function App() {
 
     // --- Firebase Initialization & Authentication ---
     useEffect(() => {
-        //let app;
-        //if (!getApps().length) {
-            app = initializeApp(firebaseConfig);
-        //} else {
-        //    app = getApp();
-        //}
-
-        const dbInstance = getFirestore(app);
-        const authInstance = getAuth(app);
-
-        setDb(dbInstance);
-        setAuth(authInstance);
-
-        const unsubscribe = onAuthStateChanged(authInstance, async (user) => {
-            if (user) {
-                setUserId(user.uid);
-                showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${user.uid}`, 'success');
-            } else {
-                try {
-
-                    if (initialAuthToken) {
-                        await signInWithCustomToken(authInstance, initialAuthToken);
-                        currentUserId = authInstance.currentUser?.uid || crypto.randomUUID();
-                        setUserId(currentUserId); // Cập nhật userId sau khi đăng nhập
-                        showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${currentUserId}`, 'success');
-                    } else {
-                        // Try to sign in anonymously if no user is authenticated
-                        const anonymousUser = await signInAnonymously(authInstance);
-                        setUserId(anonymousUser.user.uid);
-                        showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${anonymousUser.user.uid}`, 'success');
-                    }
-                    
-                } catch (error) {
-                    setUserId('anonymous-user'); // Fallback if anonymous sign-in fails
-                    showMessage('Xác thực Firebase', `Đăng nhập thất bại: ${error.message}. Tiếp tục với User ID ẩn danh.`, 'error');
-                    console.error("Firebase Auth error:", error);
-                }
+        let firebaseApp; // Khai báo biến cục bộ bên trong useEffect
+        try {
+            // Kiểm tra xem các biến môi trường thiết yếu có tồn tại không
+            if (!import.meta.env.VITE_FIREBASE_API_KEY) {
+                throw new Error("Missing Firebase Config");
             }
-        });
+    
+            if (!getApps().length) {
+                firebaseApp = initializeApp(firebaseConfig);
+            } else {
+                firebaseApp = getApp();
+            }
+            const dbInstance = getFirestore(firebaseApp);
+            const authInstance = getAuth(firebaseApp);
+    
+            setDb(dbInstance);
+            setAuth(authInstance);
+            setIsFirebaseEnabled(true); // Đánh dấu Firebase đã sẵn sàng
 
-        // Initial sign-in with custom token if available (for Canvas environment)
-        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-            signInWithCustomToken(authInstance, __initial_auth_token)
-                .catch(error => {
-                    console.error("Error signing in with custom token:", error);
-                    // Fallback to anonymous if custom token fails
-                    signInAnonymously(authInstance)
-                        .then(anonymousUser => {
+            const unsubscribe = onAuthStateChanged(authInstance, async (user) => {
+                if (user) {
+                    setUserId(user.uid);
+                    showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${user.uid}`, 'success');
+                } else {
+                    try {
+    
+                        if (initialAuthToken) {
+                            await signInWithCustomToken(authInstance, initialAuthToken);
+                            currentUserId = authInstance.currentUser?.uid || crypto.randomUUID();
+                            setUserId(currentUserId); // Cập nhật userId sau khi đăng nhập
+                            showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${currentUserId}`, 'success');
+                        } else {
+                            // Try to sign in anonymously if no user is authenticated
+                            const anonymousUser = await signInAnonymously(authInstance);
                             setUserId(anonymousUser.user.uid);
-                            showMessage('Xác thực Firebase', `Đăng nhập ẩn danh thành công (Custom token thất bại): ${anonymousUser.user.uid}`, 'warning');
-                        })
-                        .catch(anonError => {
-                            setUserId('anonymous-user-fallback');
-                            showMessage('Xác thực Firebase', `Không thể đăng nhập. Vui lòng kiểm tra kết nối.`, 'error');
-                            console.error("Anonymous sign-in fallback failed:", anonError);
-                        });
-                });
-        } else {
-            // If no custom token, try anonymous sign-in directly
-            signInAnonymously(authInstance)
-                .then(anonymousUser => {
-                    setUserId(anonymousUser.user.uid);
-                    showMessage('Xác thực Firebase', `${t('header.login.anon')}: ${anonymousUser.user.uid}`, 'success');
-                })
-                .catch(error => {
-                    setUserId('anonymous-user-fallback');
-                    showMessage('Xác thực Firebase', `Không thể đăng nhập. Vui lòng kiểm tra kết nối.`, 'error');
-                    console.error("Anonymous sign-in failed:", error);
-                });
+                            showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${anonymousUser.user.uid}`, 'success');
+                        }
+                        
+                    } catch (error) {
+                        setUserId('anonymous-user'); // Fallback if anonymous sign-in fails
+                        showMessage('Xác thực Firebase', `Đăng nhập thất bại: ${error.message}. Tiếp tục với User ID ẩn danh.`, 'error');
+                        console.error("Firebase Auth error:", error);
+                    }
+                }
+            });
+    
+            // Initial sign-in with custom token if available (for Canvas environment)
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                signInWithCustomToken(authInstance, __initial_auth_token)
+                    .catch(error => {
+                        console.error("Error signing in with custom token:", error);
+                        // Fallback to anonymous if custom token fails
+                        signInAnonymously(authInstance)
+                            .then(anonymousUser => {
+                                setUserId(anonymousUser.user.uid);
+                                showMessage('Xác thực Firebase', `Đăng nhập ẩn danh thành công (Custom token thất bại): ${anonymousUser.user.uid}`, 'warning');
+                            })
+                            .catch(anonError => {
+                                setUserId('anonymous-user-fallback');
+                                showMessage('Xác thực Firebase', `Không thể đăng nhập. Vui lòng kiểm tra kết nối.`, 'error');
+                                console.error("Anonymous sign-in fallback failed:", anonError);
+                            });
+                    });
+            } else {
+                // If no custom token, try anonymous sign-in directly
+                signInAnonymously(authInstance)
+                    .then(anonymousUser => {
+                        setUserId(anonymousUser.user.uid);
+                        showMessage('Xác thực Firebase', `${t('header.login.anon')}: ${anonymousUser.user.uid}`, 'success');
+                    })
+                    .catch(error => {
+                        setUserId('anonymous-user-fallback');
+                        showMessage('Xác thực Firebase', `Không thể đăng nhập. Vui lòng kiểm tra kết nối.`, 'error');
+                        console.error("Anonymous sign-in failed:", error);
+                    });
+            }
+            return () => unsubscribe();
+        } catch (error) {
+            console.error("Firebase fail-safe triggered:", error);
+            setIsFirebaseEnabled(false);
+            setDataStorageMode('local')}
+            showMessage('Hệ thống', 'Firebase chưa được cấu hình. Chế độ Lưu trữ đám mây sẽ bị vô hiệu hóa.', 'warning');
         }
-
-
-        return () => unsubscribe();
     }, [showMessage]);
 
     // --- Data Filtering for Display ---
@@ -4808,6 +4821,7 @@ function App() {
                             <select
                                 className="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-800"
                                 value={dataStorageMode}
+                                disabled={!isFirebaseEnabled} // Sẽ disable nếu config lỗi
                                 onChange={(e) => setDataStorageMode(e.target.value)}
                             >
                                 <option value="local">{t('app.storage.local')}</option>
