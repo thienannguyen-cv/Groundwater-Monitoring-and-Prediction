@@ -2980,7 +2980,7 @@ function App() {
     // Firebase related states
     const [db, setDb] = useState(null);
     const [auth, setAuth] = useState(null);
-    const [userId, setUserId] = useState("09943658684084029073"); // Firebase user ID
+    const [userId, setUserId] = useState(null);
     const [dataStorageMode, setDataStorageMode] = useState('local'); // 'local' or 'firestore'
 
     // Data States
