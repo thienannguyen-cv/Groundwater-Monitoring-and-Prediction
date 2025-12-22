@@ -1,7 +1,7 @@
 # 🌊 Groundwater Monitoring and Prediction System
 ### *AI-Driven Hydrological Intelligence Framework (HDVO Architecture)*
 
-An advanced system for monitoring and predicting groundwater levels (GWL) using Artificial Intelligence, built on the **HDVO (Human-in-the-Loop Hypothesis-Driven Validation and Optimization)** architecture.
+An advanced system for monitoring and predicting groundwater levels (GWL) using Artificial Intelligence, built on the [**HDVO (Human-in-the-Loop Hypothesis-Driven Validation and Optimization)**](https://github.com/thienannguyen-cv/SMap/tree/main/tools/testing/hdvo) architecture.
 
 ---
 
