@@ -19,7 +19,10 @@ const PREDICTING_PERIOD = 7;
 const appId = "ground-water_firestore-app"; // typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 const FETCH_API_URL = import.meta.env.VITE_HDVO_API_URL;
 const FETCH_CLIENT_KEY = import.meta.env.VITE_FETCH_CLIENT_KEY;
-const firebaseConfig = import.meta.env.VITE_FIREBASE_API_KEY; // typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID}; // typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
 const initialAuthToken = (typeof window !== 'undefined' && window.__initial_auth_token) 
                          ? window.__initial_auth_token 
                          : null;
