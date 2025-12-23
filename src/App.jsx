@@ -3655,6 +3655,7 @@ function App() {
                         historicalWeatherSubset,
                         historicalWaterUsageSubset
                     );
+                    console.log("simulatedPredictions:", simulatedPredictions); // Log with more precision
 
                     if (Array.isArray(simulatedPredictions) && simulatedPredictions.length >= 1 && typeof simulatedPredictions[0] === 'number' && !isNaN(simulatedPredictions[0])) {
                         const predictedGwlForThisDay = simulatedPredictions[0]; // Take the first day's prediction
