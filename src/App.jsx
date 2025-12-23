@@ -4036,7 +4036,7 @@ function App() {
                 
                     // Tên key này phải khớp với data.get('generationConfig') trong Python
                     generationConfig: generationConfig
-                )
+                })
             });
             const rawText = await response.text();
             let result;
