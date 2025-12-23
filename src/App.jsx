@@ -27,314 +27,6 @@ const initialAuthToken = (typeof window !== 'undefined' && window.__initial_auth
                          ? window.__initial_auth_token 
                          : null;
 
-const translations = {
-  en: {
-    "app.title": "Groundwater Monitoring & Prediction",
-    "app.loading": "Loading application...",
-    "app.storage.mode": "Storage Mode",
-    "app.storage.local": "Local Storage",
-    "app.storage.firestore": "Google Firestore",
-    "app.storage.not_configured": "Not Configured",
-
-    "nav.dashboard": "Dashboard",
-    "nav.data": "Data Management",
-    "nav.prediction": "AI Advisement",
-    "nav.sustainability": "Sustainability",
-    "nav.knowledge": "AI Expert",
-    "nav.gis": "GIS",
-    "nav.stats": "Statistical Validation",
-
-    "well.title": "Well Management",
-    "well.subtitle": "Add, edit or remove wells' information.",
-    "well.list": "Well List",
-    "well.add": "Add New Well",
-    "well.edit": "Edit Well",
-    "well.id": "Well ID",
-    "well.name": "Well Name",
-    "well.latitude": "Latitude",
-    "well.longitude": "Longitude",
-    "well.actions": "Actions",
-    "well.noData": "No wells added yet.",
-    "well.delete.confirm": "Are you sure you want to delete the well with ID ",
-
-    "dashboard.title": "Dashboard",
-    "dashboard.selectWell": "Select a well",
-    "dashboard.refresh": "Refresh Dashboard",
-    "dashboard.gwl.title": "GWL",
-    "dashboard.gwl.latest": "Latest GWL",
-    "dashboard.ec.title": "EC",
-    "dashboard.ec.latest": "Latest EC",
-    "dashboard.ph.title": "pH",
-    "dashboard.ph.latest": "Latest pH",
-    "dashboard.prediction.day1": "Predicted GWL (Day 1)",
-    "dashboard.chart.title": "Groundwater Level: Historical vs Predicted",
-    "dashboard.chart.unit": "Level (m)",
-
-    "data.title": "Sensor Data Management",
-    "data.import.title": "Import Data (JSON)",
-    "data.type.groundwater.import.title": "Import Data (JSON)",
-    "data.type.quality.import.title": "Import Data (JSON)",
-    "data.type.weather.import.title": "Import Data (JSON)",
-    "data.type.usage.import.title": "Import Data (JSON)",
-    "data.type.groundwater": "Groundwater Data (GWL & EC)",
-    "data.type.quality": "Water Quality",
-    "data.type.weather": "Weather",
-    "data.type.usage": "Water Usage",
-    "data.file.none": "Put JSON content here:",
-    "data.file.select": "Or, import JSON file:",
-    "data.import.success": "Data imported successfully",
-    "data.import.error": "Failed to import data. Please check JSON format.",
-
-    "ai.prediction.title": "AI Prediction & Analysis",
-    "ai.model.select": "Select Prediction Model",
-    "ai.model.general": "General AI Model",
-    "ai.model.arima": "ARIMA (Time Series)",
-    "ai.model.gp": "Gaussian Process",
-    "ai.params": "Model Parameters",
-    "ai.check": "Check Prediction Performance",
-    "ai.explanation": "AI Explanation & Insights",
-    "ai.metrics.title": "Performance Metrics",
-    "ai.pi.title": "Prediction Intervals (PI)",
-    "ai.pi.confidence": "Confidence Level",
-    "ai.table.historical": "Historical",
-    "ai.table.predicted": "Predicted",
-    "ai.table.errors": "Error",
-    "ai.table.gwl-unit": "m",
-
-    "stats.title": "Statistical Validation",
-    "stats.residuals": "Residual Analysis",
-    "stats.acf": "Autocorrelation (ACF)",
-    "stats.qq": "Q-Q Plot",
-    "stats.histogram": "Distribution Histogram",
-    "stats.pvalue": "P-Value",
-    "stats.distribution": "Data Distribution",
-
-    "sustainability.title": "Sustainability & Compliance",
-    "sustainability.status": "Overall Status",
-    "sustainability.insufficient": "Không đủ dữ liệu",
-    "sustainability.compliant": "COMPLIANT",
-    "sustainability.noncompliant": "NON-COMPLIANT",
-    "sustainability.thresholds": "Standard Thresholds",
-    "sustainability.recommendation": "AI Optimization Suggestion",
-    "sustainability.recommendation.button": "Generate AI Optimization Suggestion",
-    "sustainability.action.reduce": "Reduce pumping rate",
-    "sustainability.action.treat": "Water treatment required",
-    
-    "common.add": "Add",
-    "common.save": "Save",
-    "common.submit": "Submit",
-    "common.cancel": "Cancel",
-    "common.close": "Close",
-    "common.delete": "Delete",
-    "common.edit": "Edit",
-    "common.success": "Success",
-    "common.error": "Error",
-    "language.en": "English",
-    "language.vi": "Vietnamese",
-    
-    // Header & Session
-    "header.userId": "User ID",
-    "header.appId": "App ID",
-    "header.btn.save": "Save Session",
-    "header.btn.load": "Load Session",
-    "header.login.success": "Logged in successfully",
-    "header.login.anon": "Anonymous Login",
-
-    // AI Prediction - Advanced Controls (Tab Dự báo & Tối ưu AI)
-    "ai.prompt.mode": "AI Prompt Mode",
-    "ai.prompt.high": "High-End (Deep Analysis)",
-    "ai.prompt.mid": "Mid-End (Balanced)",
-    "ai.prompt.low": "Low-End (Simple/Fix)",
-    "ai.hint.label": "User Hint (for AI)",
-    "ai.hint.placeholder": "E.g., Focus on seasonal trends...",
-    "ai.toggle.hint": "AI analyzes & suggests hint",
-    "ai.btn.generate": "AI Generate/Improve Function, ",
-    "ai.btn.revert": "Revert to Last Valid Function",
-    "ai.code.title": "AI Prediction Function (JavaScript)",
-    "ai.theory.title": "AI Theory",
-    "ai.explanation.title": "AI Explanation",
-    
-    // AI History Table (Tab Học tập AI)
-    "history.iteration": "Iteration",
-    "history.model": "Model",
-    "history.theory": "Theory (Summary)",
-    "history.explanation": "Explanation (Summary)",
-    "history.params": "Parameters",
-
-    // GIS Map (Tab GIS)
-    "gis.select.label": "Select well to focus on map",
-    
-    // Messages (Thông báo động)
-    "msg.session.saving": "Saving session...",
-    "msg.session.saved": "Session saved successfully to Cloud.",
-    "msg.session.download": "Downloading session file...",
-    "msg.error.auth": "Authentication required to save to Cloud."
-  },
-
-  vi: {
-    "app.title": "Quan trắc & Dự báo Nước ngầm",
-    "app.loading": "Đang tải ứng dụng...",
-    "app.storage.mode": "Chế độ lưu trữ",
-    "app.storage.local": "Lưu trữ nội bộ",
-    "app.storage.firestore": "Google Firestore",
-    "app.storage.not_configured": "Chưa cấu hình",
-
-    "nav.dashboard": "Bảng điều khiển",
-    "nav.data": "Quản lý dữ liệu",
-    "nav.prediction": "Dự báo & Tối ưu AI",
-    "nav.sustainability": "Bền vững & Tuân thủ",
-    "nav.knowledge": "Học tập & Tri thức AI",
-    "nav.gis": "GIS & Bản đồ",
-    "nav.stats": "Kiểm định thống kê",
-
-    "well.title": "Quản lý Giếng",
-    "well.subtitle": "Thêm, chỉnh sửa hoặc xóa thông tin về các giếng quan trắc.",
-    "well.list": "Danh sách giếng",
-    "well.add": "Thêm giếng mới",
-    "well.edit": "Sửa thông tin giếng",
-    "well.id": "Mã Giếng",
-    "well.name": "Tên giếng",
-    "well.latitude": "Vĩ độ",
-    "well.longitude": "Kinh độ",
-    "well.actions": "Hành động",
-    "well.noData": "Chưa có giếng nào được thêm vào.",
-    "well.delete.confirm": "Bạn có chắc chắn muốn xóa giếng ",
-
-    "dashboard.title": "Tổng quan Dashboard",
-    "dashboard.selectWell": "Chọn giếng",
-    "dashboard.refresh": "Làm mới Dashboard",
-    "dashboard.gwl.title": "Mực nước ngầm (GWL)",
-    "dashboard.gwl.latest": "Mực nước ngầm (GWL)",
-    "dashboard.ec.title": "Độ dẫn điện (EC)",
-    "dashboard.ec.latest": "Độ dẫn điện (EC)",
-    "dashboard.ph.title": "Độ pH",
-    "dashboard.ph.latest": "Độ pH Chất lượng Nước",
-    "dashboard.prediction.day1": "Dự báo GWL (Ngày 1)",
-    "dashboard.chart.title": "Mực nước ngầm: Thực tế và Dự báo",
-    "dashboard.chart.unit": "Mực nước (m)",
-
-    "data.title": "Quản lý Dữ liệu Sensor & Môi trường",
-    "data.import.title": "Nhập dữ liệu (JSON)",
-    "data.type.groundwater.import.title": "Nhập Dữ liệu Nước ngầm (JSON)",
-    "data.type.quality.import.title": "Nhập Dữ liệu Chất lượng Nước (JSON)",
-    "data.type.weather.import.title": "Nhập Dữ liệu Thời tiết (JSON)",
-    "data.type.usage.import.title": "Nhập Dữ liệu Sử dụng Nước (JSON)",
-    "data.type.groundwater": "Dữ liệu nước ngầm (GWL & EC)",
-    "data.type.quality": "Dữ liệu Chất lượng Nước",
-    "data.type.weather": "Dữ liệu Dự báo Thời tiết",
-    "data.type.usage": "Dữ liệu Sử dụng Nước",
-    "data.file.none": "Dán dữ liệu JSON vào đây:",
-    "data.file.select": "Hoặc tải lên từ tệp JSON:",
-    "data.import.success": "Nhập dữ liệu thành công",
-    "data.import.error": "Lỗi nhập dữ liệu. Vui lòng kiểm tra định dạng JSON.",
-
-    "ai.prediction.title": "Dự báo & Phân tích AI",
-    "ai.model.select": "Chọn mô hình dự báo",
-    "ai.model.general": "Mô hình AI tổng quát",
-    "ai.model.arima": "Mô hình ARIMA (AI hướng dẫn)",
-    "ai.model.gp": "Gaussian Process (AI hướng dẫn)",
-    "ai.params": "Tham số mô hình",
-    "ai.check": "Kiểm tra hiệu suất dự báo",
-    "ai.explanation": "Giải thích và nhận định của AI",
-    "ai.metrics.title": "Chỉ số hiệu suất",
-    "ai.pi.title": "Khoảng dự đoán (PI)",
-    "ai.pi.confidence": "Độ tin cậy",
-    "ai.table.historical": "Thực tế",
-    "ai.table.predicted": "Dự báo",
-    "ai.table.errors": "Sai số",
-    "ai.table.gwl-unit": "m",
-
-    "stats.title": "Kiểm định thống kê",
-    "stats.residuals": "Phân tích phần dư",
-    "stats.acf": "Tự tương quan (ACF)",
-    "stats.qq": "Biểu đồ Q-Q của Phần dư",
-    "stats.histogram": "Biểu đồ tần suất",
-    "stats.pvalue": "Chỉ số P-Value",
-    "stats.distribution": "Phân phối Dữ liệu",
-
-    "sustainability.title": "Bền vững & Tuân thủ",
-    "sustainability.status": "Trạng thái chung",
-    "sustainability.insufficient": "Không đủ dữ liệu",
-    "sustainability.compliant": "ĐẠT",
-    "sustainability.noncompliant": "KHÔNG ĐẠT",
-    "sustainability.thresholds": "Ngưỡng tiêu chuẩn",
-    "sustainability.recommendation": "Đề xuất tối ưu hóa từ AI",
-    "sustainability.recommendation.button": "Tạo Đề xuất tối ưu hóa từ AI",
-    "sustainability.action.reduce": "Giảm lưu lượng bơm",
-    "sustainability.action.treat": "Cần xử lý nước",
-    
-    "common.add": "Thêm",
-    "common.save": "Lưu",
-    "common.submit": "Xác nhận",
-    "common.cancel": "Hủy",
-    "common.close": "Đóng",
-    "common.delete": "Xóa",
-    "common.edit": "Sửa",
-    "common.success": "Thành công",
-    "common.error": "Lỗi",
-    "language.en": "Tiếng Anh",
-    "language.vi": "Tiếng Việt",
-    
-    // Header & Session
-    "header.userId": "ID Người dùng",
-    "header.appId": "ID Ứng dụng",
-    "header.btn.save": "Lưu Phiên làm việc",
-    "header.btn.load": "Tải Phiên làm việc",
-    "header.login.success": "Đăng nhập thành công",
-    "header.login.anon": "Đăng nhập ẩn danh",
-
-    // AI Prediction - Advanced Controls
-    "ai.prompt.mode": "Chế độ Prompt AI",
-    "ai.prompt.high": "High-End (Phân tích sâu)",
-    "ai.prompt.mid": "Mid-End (Cân bằng)",
-    "ai.prompt.low": "Low-End (Đơn giản/Sửa lỗi)",
-    "ai.hint.label": "Gợi ý của Người dùng (cho AI)",
-    "ai.hint.placeholder": "VD: Tập trung vào xu hướng theo mùa...",
-    "ai.toggle.hint": "AI phân tích và đưa ra gợi ý người dùng (dựa trên lỗi hiện tại)",
-    "ai.btn.generate": "AI Tạo/Cải thiện Hàm, Lần lặp",
-    "ai.btn.revert": "Hoàn tác về Hàm hợp lệ cuối",
-    "ai.code.title": "Hàm Dự đoán AI (JavaScript)",
-    "ai.theory.title": "Học thuyết của AI",
-    "ai.explanation.title": "Giải thích của AI",
-
-    // AI History Table
-    "history.iteration": "Lần lặp",
-    "history.model": "Mô hình",
-    "history.theory": "Học thuyết (Tóm tắt)",
-    "history.explanation": "Giải thích (Tóm tắt)",
-    "history.params": "Tham số",
-
-    // GIS Map
-    "gis.select.label": "Chọn giếng để tập trung trên bản đồ",
-
-    // Messages
-    "msg.session.saving": "Đang lưu phiên...",
-    "msg.session.saved": "Phiên làm việc đã được lưu vào Đám mây.",
-    "msg.session.download": "Đang tải xuống tệp phiên làm việc...",
-    "msg.error.auth": "Cần đăng nhập để lưu vào Đám mây."
-  }
-};
-
-const STORAGE_KEY_LANG = 'app_preferred_language';
-
-// Cấu hình thứ tự xoay vòng ngôn ngữ
-const LANGUAGE_MAP = {
-  'en': 'vi',
-  'vi': 'en'
-};
-
-// Map để hiển thị Icon/Cờ (nếu bạn muốn nút bấm sinh động hơn)
-const LANGUAGE_ICONS = {
-  'en': '🇺🇸',
-  'vi': '🇻🇳'
-};
-
-// [THAY ĐỔI 2]: Thêm hàm Helper để lấy text (Scalable approach)
-// Hàm này an toàn: nếu không tìm thấy key trong ngôn ngữ đích, nó sẽ fallback về tiếng Anh, hoặc trả về chính key đó.
-const getTranslation = (lang, key) => {
-    return translations[lang]?.[key] || translations['en']?.[key] || key;
-};
-
 // Hàm mặc định cho AI để dự đoán mực nước ngầm
 // Output: Một MẢNG 7 số duy nhất đại diện cho GWL dự đoán trong 7 ngày tới.
 const DEFAULT_PREDICTION_FUNCTION_BODY = `
@@ -407,24 +99,22 @@ const renderAiFunctionSignature = () => {
 // Helper function to analyze malformed AI responses or runtime errors
 const analyzeMalformedAiResponse = async (errorDetails, contextHint) => {
     const p_body = JSON.stringify({
-                    errorDetails: errorDetails, 
-                    contextHint: contextHint
-                });
-
+        errorDetails: errorDetails,
+        contextHint: contextHint
+    });
     try {
-        const apiKey = ""; // Canvas will provide this
+        const apiKey = ""; // Canvas will provide API key
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
         const response = await fetch(`${FETCH_API_URL}/api/v2/ai1_fetch/raw_text`, {
             method: 'POST',
             headers: { 
-                'Content-Type': 'application/json',
-                'X-Client-Key': FETCH_CLIENT_KEY, // Khóa xác thực Backend
+                'Content-Type': 'application/json', 
+                'X-Client-Key': FETCH_CLIENT_KEY
             },
-            // Gửi chuỗi prompt đã được xây dựng cho Backend
             body: JSON.stringify({
-                    errorDetails: errorDetails, 
-                    contextHint: contextHint
-                })
+                errorDetails: errorDetails, 
+                contextHint: contextHint
+            })
         });
         const rawText = await response.text();
         let result;
@@ -673,7 +363,7 @@ const calculateBootstrapPI = (residuals, predictions, startStep=0, numSimulation
 // --- Reusable Components ---
 
 // Modal Component for general messages/confirmations
-const MessageModal = ({ isOpen, onClose, title, message, t, type = 'info' }) => {
+const MessageModal = ({ isOpen, onClose, title, message, type = 'info' }) => {
     if (!isOpen) return null;
 
     let bgColor = 'bg-blue-100';
@@ -704,7 +394,7 @@ const MessageModal = ({ isOpen, onClose, title, message, t, type = 'info' }) => 
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={onClose}
                     >
-                        {t('common.close')}
+                        Đóng
                     </button>
                 </div>
             </div>
@@ -713,7 +403,7 @@ const MessageModal = ({ isOpen, onClose, title, message, t, type = 'info' }) => 
 };
 
 // Confirm Modal Component
-const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, t, type = 'warning' }) => {
+const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, type = 'warning' }) => {
     if (!isOpen) return null;
 
     let bgColor = 'bg-yellow-100';
@@ -736,13 +426,13 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, t, type = 'w
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={onClose}
                     >
-                        {t('common.cancel')}
+                        Hủy
                     </button>
                     <button
                         className={`bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
                         onClick={onConfirm}
                     >
-                        {t('common.submit')}
+                        Xác nhận
                     </button>
                 </div>
             </div>
@@ -752,7 +442,7 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, title, message, t, type = 'w
 
 
 // General JSON input modal
-const JsonInputModal = React.memo(({ isOpen, onClose, onSubmit, title, jsonInput, onJsonInputChange, selectedFileName, onFileChange, errorMessage, fileInputKey, t }) => {
+const JsonInputModal = React.memo(({ isOpen, onClose, onSubmit, title, jsonInput, onJsonInputChange, selectedFileName, onFileChange, errorMessage, fileInputKey }) => {
     if (!isOpen) return null;
 
     return (
@@ -761,13 +451,13 @@ const JsonInputModal = React.memo(({ isOpen, onClose, onSubmit, title, jsonInput
                 <h2 className="text-2xl font-bold mb-4 text-slate-800">{title}</h2>
                 {errorMessage && (
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                        <strong className="font-bold">{t('common.error')}:</strong>
+                        <strong className="font-bold">Lỗi:</strong>
                         <span className="block sm:inline"> {errorMessage}</span>
                     </div>
                 )}
                 <div className="mb-4">
                     <label htmlFor="json-textarea" className="block text-slate-700 text-sm font-bold mb-2">
-                        {t('data.file.none')}
+                        Dán dữ liệu JSON vào đây:
                     </label>
                     <textarea
                         id="json-textarea"
@@ -779,7 +469,7 @@ const JsonInputModal = React.memo(({ isOpen, onClose, onSubmit, title, jsonInput
                 </div>
                 <div className="mb-4">
                     <label htmlFor="json-file-upload" className="block text-slate-700 text-sm font-bold mb-2">
-                        {t('data.file.select')}
+                        Hoặc tải lên từ tệp JSON:
                     </label>
                     <input
                         key={fileInputKey} // Use key to reset file input
@@ -796,13 +486,13 @@ const JsonInputModal = React.memo(({ isOpen, onClose, onSubmit, title, jsonInput
                         className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={onSubmit}
                     >
-                        {t('common.submit')}
+                        Xác nhận
                     </button>
                     <button
                         className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         onClick={onClose}
                     >
-                        {t('common.cancel')}
+                        Hủy
                     </button>
                 </div>
             </div>
@@ -873,7 +563,7 @@ const GroundwaterChart = ({ data }) => (
     </ResponsiveContainer>
 );
 
-const EcChart = ({ data, t }) => (
+const EcChart = ({ data }) => (
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
             data={data.map(d => ({ ...d, timestamp: new Date(d.timestamp).toLocaleDateString('vi-VN') }))}
@@ -884,12 +574,12 @@ const EcChart = ({ data, t }) => (
             <YAxis label={{ value: 'Độ dẫn điện (µS/cm)', angle: -90, position: 'insideLeft' }} />
             <Tooltip />
             <Legend />
-            <Line type="monotone" dataKey="ec" stroke="#10b981" activeDot={{ r: 8 }} name={t('dashboard.ec.title')} />
+            <Line type="monotone" dataKey="ec" stroke="#10b981" activeDot={{ r: 8 }} name="Độ dẫn điện (EC)" />
         </LineChart>
     </ResponsiveContainer>
 );
 
-const WaterQualityChart = ({ data, t }) => (
+const WaterQualityChart = ({ data }) => (
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
             data={data.map(d => ({ ...d, timestamp: new Date(d.timestamp).toLocaleDateString('vi-VN') }))}
@@ -907,7 +597,7 @@ const WaterQualityChart = ({ data, t }) => (
     </ResponsiveContainer>
 );
 
-const WeatherChart = ({ data, t }) => (
+const WeatherChart = ({ data }) => (
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
             data={data.map(d => ({ ...d, timestamp: new Date(d.timestamp).toLocaleDateString('vi-VN') }))}
@@ -924,7 +614,7 @@ const WeatherChart = ({ data, t }) => (
     </ResponsiveContainer>
 );
 
-const UsageChart = ({ data, t }) => (
+const UsageChart = ({ data }) => (
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
             data={data.map(d => ({ ...d, timestamp: new Date(d.timestamp).toLocaleDateString('vi-VN') }))}
@@ -942,7 +632,7 @@ const UsageChart = ({ data, t }) => (
 );
 
 // UPDATED PredictionRecharts component (This is used in prediction-optimization tab, so keep it)
-const PredictionRecharts = ({ data, t }) => (
+const PredictionRecharts = ({ data }) => (
     <ResponsiveContainer width="100%" height="100%">
         <LineChart
             data={data}
@@ -968,7 +658,7 @@ const PredictionRecharts = ({ data, t }) => (
 
 
 // Components for Statistical Validation Tab
-const ResidualsVsTimeChart = ({ data, t }) => (
+const ResidualsVsTimeChart = ({ data }) => (
     <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -982,7 +672,7 @@ const ResidualsVsTimeChart = ({ data, t }) => (
     </ResponsiveContainer>
 );
 
-const ResidualsHistogramChart = ({ data, t }) => (
+const ResidualsHistogramChart = ({ data }) => (
     <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -995,7 +685,7 @@ const ResidualsHistogramChart = ({ data, t }) => (
     </ResponsiveContainer>
 );
 
-const QQPlotChart = ({ data, t }) => (
+const QQPlotChart = ({ data }) => (
     <ResponsiveContainer width="100%" height={300}>
         <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
             <CartesianGrid />
@@ -1012,7 +702,7 @@ const QQPlotChart = ({ data, t }) => (
     </ResponsiveContainer>
 );
 
-const ACFPlotChart = ({ data, t }) => (
+const ACFPlotChart = ({ data }) => (
     <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -1032,7 +722,7 @@ const ACFPlotChart = ({ data, t }) => (
     </ResponsiveContainer>
 );
 
-const RawGroundwaterDataChart = ({ data, t }) => (
+const RawGroundwaterDataChart = ({ data }) => (
     <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data.map(d => ({ ...d, timestamp: new Date(d.timestamp).toLocaleDateString('vi-VN') }))}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -1046,7 +736,7 @@ const RawGroundwaterDataChart = ({ data, t }) => (
 );
 
 // New Well Management Component
-const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm, closeConfirmModal, wellLocations, setWellLocations, setSelectedWellId, selectedWellId, setGroundwaterData, setWaterQualityData, setWeatherForecast, setWaterUsage, setAllWellForecasts, t }) => {
+const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm, closeConfirmModal, wellLocations, setWellLocations, setSelectedWellId, selectedWellId, setGroundwaterData, setWaterQualityData, setWeatherForecast, setWaterUsage, setAllWellForecasts }) => {
     const [wellId, setWellId] = useState('');
     const [wellName, setWellName] = useState('');
     const [wellLat, setWellLat] = useState('');
@@ -1058,11 +748,11 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
 
     const handleAddOrUpdateWell = useCallback(async () => {
         if (!wellId || !wellName || wellLat === '' || wellLon === '') {
-            showMessage(t('common.error'), 'Vui lòng điền đầy đủ thông tin giếng.', 'error');
+            showMessage('Lỗi', 'Vui lòng điền đầy đủ thông tin giếng.', 'error');
             return;
         }
         if (isNaN(parseFloat(wellLat)) || isNaN(parseFloat(wellLon))) {
-            showMessage(t('common.error'), 'Vĩ độ và Kinh độ phải là số hợp lệ.', 'error');
+            showMessage('Lỗi', 'Vĩ độ và Kinh độ phải là số hợp lệ.', 'error');
             return;
         }
 
@@ -1084,7 +774,7 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
                     return [...prev, wellData];
                 }
             });
-            showMessage(t('common.success'), `Giếng '${wellName}' đã được ${editMode ? 'cập nhật' : 'thêm mới'}.`, 'success');
+            showMessage('Thành công', `Giếng '${wellName}' đã được ${editMode ? 'cập nhật' : 'thêm mới'}.`, 'success');
             setWellId('');
             setWellName('');
             setWellLat('');
@@ -1093,15 +783,15 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
             setCurrentWellToEdit(null);
             setSelectedWellId(wellId); // Automatically select the newly added/updated well
         } catch (error) {
-            showMessage(t('common.error'), `Không thể ${editMode ? 'cập nhật' : 'thêm'} giếng: ${error.message}`, 'error');
+            showMessage('Lỗi', `Không thể ${editMode ? 'cập nhật' : 'thêm'} giếng: ${error.message}`, 'error');
             console.error("Error adding/updating well:", error);
         }
     }, [wellId, wellName, wellLat, wellLon, showMessage, editMode, setSelectedWellId, setWellLocations]);
 
     const handleDeleteWell = useCallback(async (id, wellName) => {
         showConfirm(
-            t('well.delete.confirm'),
-            `${t('well.delete.confirm')} '${wellName}' (ID: ${id})? Thao tác này không thể hoàn tác và sẽ xóa tất cả dữ liệu liên quan đến giếng này.`,
+            'Xác nhận Xóa',
+            `Bạn có chắc chắn muốn xóa giếng '${wellName}' (ID: ${id})? Thao tác này không thể hoàn tác và sẽ xóa tất cả dữ liệu liên quan đến giếng này.`,
             async () => {
                 try {
                     // Update local state directly. Session save/load will handle persistence.
@@ -1117,12 +807,12 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
                     });
 
 
-                    showMessage(t('common.success'), `Giếng '${wellName}' và tất cả dữ liệu liên quan đã được xóa.`, 'success');
+                    showMessage('Thành công', `Giếng '${wellName}' và tất cả dữ liệu liên quan đã được xóa.`, 'success');
                     if (selectedWellId === id) {
                         setSelectedWellId(''); // Deselect if the current well is deleted
                     }
                 } catch (error) {
-                    showMessage(t('common.error'), `Không thể xóa giếng: ${error.message}`, 'error');
+                    showMessage('Lỗi', `Không thể xóa giếng: ${error.message}`, 'error');
                     console.error("Error deleting well:", error);
                 } finally {
                     closeConfirmModal();
@@ -1155,12 +845,12 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
 
     return (
         <div className="mt-8 p-6 bg-white rounded-xl shadow-lg border border-slate-200">
-            <h3 className="text-2xl font-bold mb-4 text-slate-800">{t('well.title')}</h3>
-            <p className="text-slate-600 mb-4">{t('well.subtitle')}</p>
+            <h3 className="text-2xl font-bold mb-4 text-slate-800">Quản lý Giếng</h3>
+            <p className="text-slate-600 mb-4">Thêm, chỉnh sửa hoặc xóa thông tin về các giếng quan trắc.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 <div>
-                    <label htmlFor="well-id" className="block text-slate-700 text-sm font-bold mb-2">{t('well.id')}:</label>
+                    <label htmlFor="well-id" className="block text-slate-700 text-sm font-bold mb-2">ID Giếng:</label>
                     <input
                         type="text"
                         id="well-id"
@@ -1172,7 +862,7 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
                     />
                 </div>
                 <div>
-                    <label htmlFor="well-name" className="block text-slate-700 text-sm font-bold mb-2">{t('well.name')}:</label>
+                    <label htmlFor="well-name" className="block text-slate-700 text-sm font-bold mb-2">Tên Giếng:</label>
                     <input
                         type="text"
                         id="well-name"
@@ -1183,7 +873,7 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
                     />
                 </div>
                 <div>
-                    <label htmlFor="well-lat" className="block text-slate-700 text-sm font-bold mb-2">{t('well.latitude')}:</label>
+                    <label htmlFor="well-lat" className="block text-slate-700 text-sm font-bold mb-2">Vĩ độ:</label>
                     <input
                         type="number"
                         id="well-lat"
@@ -1195,7 +885,7 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
                     />
                 </div>
                 <div>
-                    <label htmlFor="well-lon" className="block text-slate-700 text-sm font-bold mb-2">{t('well.longitude')}:</label>
+                    <label htmlFor="well-lon" className="block text-slate-700 text-sm font-bold mb-2">Kinh độ:</label>
                     <input
                         type="number"
                         id="well-lon"
@@ -1213,29 +903,29 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
                     onClick={handleAddOrUpdateWell}
                     disabled={dataStorageMode === 'firestore' && (!db || !userId)} // Disable for Firestore if not authenticated
                 >
-                    {editMode ? t('well.edit') : t('well.add')}
+                    {editMode ? 'Cập nhật Giếng' : 'Thêm Giếng Mới'}
                 </button>
                 {editMode && (
                     <button
                         className="px-6 py-2 bg-gray-500 text-white font-bold rounded-lg shadow-md hover:bg-gray-600 transition-colors"
                         onClick={handleCancelEdit}
                     >
-                        {t('common.cancel')}
+                        Hủy
                     </button>
                 )}
             </div>
 
-            <CollapsibleSection title={t('well.list')}>
+            <CollapsibleSection title="Danh sách Giếng hiện có">
                 {wellLocations.length > 0 ? (
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white border border-gray-200 rounded-lg">
                             <thead>
                                 <tr>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('well.id')}</th>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('well.name')}</th>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('well.latitude')}</th>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('well.longitude')}</th>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('well.actions')}</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">ID Giếng</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Tên Giếng</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Vĩ độ</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Kinh độ</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1250,13 +940,13 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
                                                 className="text-indigo-600 hover:text-indigo-900 font-medium"
                                                 onClick={() => handleEditWellClick(well)}
                                             >
-                                                {t('common.edit')}
+                                                Sửa
                                             </button>
                                             <button
                                                 className="text-red-600 hover:text-red-900 font-medium"
                                                 onClick={() => handleDeleteWell(well.id, well.name)}
                                             >
-                                                {t('common.delete')}
+                                                Xóa
                                             </button>
                                         </td>
                                     </tr>
@@ -1265,7 +955,7 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
                         </table>
                     </div>
                 ) : (
-                    <p className="text-slate-600">{t('well.noData')}</p>
+                    <p className="text-slate-600">Chưa có giếng nào được thêm vào.</p>
                 )}
             </CollapsibleSection>
         </div>
@@ -1273,7 +963,7 @@ const WellManagement = ({ dataStorageMode, db, userId, showMessage, showConfirm,
 };
 
 // Consolidated Data Table Component (SSOT Bird-Eye View)
-const ConsolidatedDataTable = ({ groundwaterData, waterQualityData, weatherForecast, waterUsage, wellLocations, t }) => {
+const ConsolidatedDataTable = ({ groundwaterData, waterQualityData, weatherForecast, waterUsage, wellLocations }) => {
     const [filterWellId, setFilterWellId] = useState('');
     const [filterStartDate, setFilterStartDate] = useState('');
     const [filterEndDate, setFilterEndDate] = useState('');
@@ -1413,7 +1103,7 @@ const ConsolidatedDataTable = ({ groundwaterData, waterQualityData, weatherForec
 };
 
 // DashboardTab
-const DashboardTab = ({ filteredGroundwaterData, sevenDayGroundwaterPrediction, predictionErrors, selectedPredictionModel, handleRefreshDashboard, aiDashboardRecommendation, t }) => {
+const DashboardTab = ({ filteredGroundwaterData, sevenDayGroundwaterPrediction, predictionErrors, selectedPredictionModel, handleRefreshDashboard, aiDashboardRecommendation }) => {
 
     const latestGwl = filteredGroundwaterData.length > 0 ? filteredGroundwaterData[filteredGroundwaterData.length - 1]?.gwl : undefined;
     const latestEc = filteredGroundwaterData.length > 0 ? filteredGroundwaterData[filteredGroundwaterData.length - 1]?.ec : undefined;
@@ -1482,38 +1172,38 @@ const DashboardTab = ({ filteredGroundwaterData, sevenDayGroundwaterPrediction, 
 
     return (
         <div className="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
-            <h2 className="text-3xl font-bold mb-6 text-slate-800">{t('dashboard.title')}</h2>
+            <h2 className="text-3xl font-bold mb-6 text-slate-800">Tổng quan Dashboard</h2>
             <div className="flex justify-end mb-4">
                 <button
                     className="px-4 py-2 bg-gray-200 text-gray-700 font-bold rounded-lg shadow-md hover:bg-gray-300 transition-colors"
                     onClick={handleRefreshDashboard}
                 >
-                    🔄 {t('dashboard.refresh')}
+                    🔄 Làm mới Dashboard
                 </button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    <h3 className="text-xl font-semibold text-blue-800 mb-2">{t('dashboard.gwl.latest')}</h3>
+                    <h3 className="text-xl font-semibold text-blue-800 mb-2">Mực nước ngầm (GWL)</h3>
                     <p className="text-3xl font-bold text-blue-600">
                         {latestGwl !== undefined ? `${latestGwl.toFixed(2)} m bgs` : 'N/A'}
                     </p>
                     <p className="text-sm text-blue-700 mt-2">Giá trị gần nhất</p>
                 </div>
                 <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                    <h3 className="text-xl font-semibold text-green-800 mb-2">{t('dashboard.ec.latest')}</h3>
+                    <h3 className="text-xl font-semibold text-green-800 mb-2">Độ dẫn điện (EC)</h3>
                     <p className="text-3xl font-bold text-green-600">
                         {latestEc !== undefined ? `${latestEc.toFixed(0)} µS/cm` : 'N/A'}
                     </p>
                     <p className="text-sm text-green-700 mt-2">Giá trị gần nhất</p>
                 </div>
                 <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                    <h3 className="text-xl font-semibold text-yellow-800 mb-2">{t('dashboard.prediction.day1')}</h3>
+                    <h3 className="text-xl font-semibold text-yellow-800 mb-2">Dự báo GWL AI (Ngày 1)</h3>
                     <p className="text-3xl font-bold text-yellow-600">
                         {/* Check if firstPredictedGwl is a number beforetoFixed */}
                         {firstPredictedGwl !== undefined && !isNaN(firstPredictedGwl) ? `${firstPredictedGwl.toFixed(2)} m bgs` : 'N/A'}
                     </p>
-                    <p className="text-sm text-yellow-700 mt-2">Dự báo {PREDICTING_PERIOD} ngày tới (giá trị ngày đầu tiên)</p>
-                    <p className="text-xs text-yellow-700 mt-1">Mô hình: {selectedPredictionModel === 'general' ? t('ai.model.general') : selectedPredictionModel.toUpperCase()}</p>
+                    <p className="text-sm text-yellow-700 mt-2">Dự báo ${PREDICTING_PERIOD} ngày tới (giá trị ngày đầu tiên)</p>
+                    <p className="text-xs text-yellow-700 mt-1">Mô hình: {selectedPredictionModel === 'general' ? 'AI Tổng quát' : selectedPredictionModel.toUpperCase()}</p>
                 </div>
                 {/* Collapsible section for Warnings & Recommendations */}
                 <div className="bg-red-50 p-4 rounded-lg border border-red-200 col-span-full">
@@ -1539,7 +1229,7 @@ const DashboardTab = ({ filteredGroundwaterData, sevenDayGroundwaterPrediction, 
                 </div>
             </div>
             <div className="mt-8">
-                <h3 className="text-2xl font-bold mb-4 text-slate-800">{t('dashboard.chart.title')}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-800">Biểu đồ tổng quan</h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     <div className="bg-slate-50 p-4 rounded-lg shadow-inner border border-slate-200 h-80">
                         {combinedGwlData.length > 0 ? (
@@ -1574,7 +1264,7 @@ const DashboardTab = ({ filteredGroundwaterData, sevenDayGroundwaterPrediction, 
                                     <YAxis label={{ value: 'Độ dẫn điện (µS/cm)', angle: -90, position: 'insideLeft' }} />
                                     <Tooltip />
                                     <Legend />
-                                    <Line type="monotone" dataKey="ec" stroke="#10b981" activeDot={{ r: 8 }} name={t('dashboard.ec.title')} />
+                                    <Line type="monotone" dataKey="ec" stroke="#10b981" activeDot={{ r: 8 }} name="Độ dẫn điện (EC)" />
                                 </LineChart>
                             </ResponsiveContainer>
                         ) : (
@@ -1595,16 +1285,16 @@ const DataManagementTab = ({
   groundwaterData, waterQualityData, weatherForecast, waterUsage, openImportModal,
   setGroundwaterData, setWaterQualityData, setWeatherForecast, setWaterUsage,
   followUpSchemaQuestion, setFollowUpSchemaQuestion, isGeneratingDataSchemaExplanation,
-  setAllWellForecasts, filteredWaterUsage, t // Pass this down
+  setAllWellForecasts, filteredWaterUsage // Pass this down
 }) => {
   return (
     <div className="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
-      <h2 className="text-3xl font-bold mb-6 text-slate-800">{t('data.title')}</h2>
+      <h2 className="text-3xl font-bold mb-6 text-slate-800">Quản lý Dữ liệu Sensor & Môi trường</h2>
       <p className="text-slate-600 mb-6">Nhập hoặc xem dữ liệu mô phỏng từ các sensor và yếu tố môi trường.</p>
 
         <div className="mb-6">
             <label htmlFor="well-select" className="block text-slate-700 text-sm font-bold mb-2">
-                {t('dashboard.selectWell')}:
+                Chọn giếng để xem dữ liệu:
             </label>
             <select
                 id="well-select"
@@ -1624,12 +1314,12 @@ const DataManagementTab = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <h3 className="text-xl font-semibold text-blue-800 mb-3">{t('data.type.groundwater')}</h3>
+                <h3 className="text-xl font-semibold text-blue-800 mb-3">Dữ liệu Nước ngầm (GWL & EC)</h3>
                 <button
                     className="px-4 py-2 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700 transition-colors w-full mb-4"
                     onClick={() => openImportModal('groundwater')}
                 >
-                    {t('data.type.groundwater.import.title')}
+                    Nhập Dữ liệu Nước ngầm (JSON)
                 </button>
                 <div className="bg-slate-50 p-4 rounded-lg shadow-inner border border-slate-200 h-80">
                     {filteredGroundwaterData.length > 0 ? (
@@ -1640,9 +1330,7 @@ const DataManagementTab = ({
                 </div>
                 <div className="bg-slate-50 p-4 rounded-lg shadow-inner border border-slate-200 h-80 mt-4">
                     {filteredGroundwaterData.length > 0 ? (
-                        <EcChart data={filteredGroundwaterData}
-                                 t={t}
-                        />
+                        <EcChart data={filteredGroundwaterData} />
                     ) : (
                         <p className="text-center text-gray-600 py-8">Không có dữ liệu độ dẫn điện để hiển thị biểu đồ.</p>
                     )}
@@ -1657,18 +1345,16 @@ const DataManagementTab = ({
             </div>
 
             <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                <h3 className="text-xl font-semibold text-green-800 mb-3">{t('data.type.quality')}</h3>
+                <h3 className="text-xl font-semibold text-green-800 mb-3">Dữ liệu Chất lượng Nước</h3>
                 <button
                     className="px-4 py-2 bg-green-600 text-white font-bold rounded-lg shadow-md hover:bg-green-700 transition-colors w-full mb-4"
                     onClick={() => openImportModal('waterQuality')}
                 >
-                    {t('data.type.quality.import.title')}
+                    Nhập Dữ liệu Chất lượng Nước (JSON)
                 </button>
                 <div className="bg-slate-50 p-4 rounded-lg shadow-inner border border-slate-200 h-80">
                     {filteredWaterQualityData.length > 0 ? (
-                        <WaterQualityChart data={filteredWaterQualityData}
-                                           t={t}
-                        />
+                        <WaterQualityChart data={filteredWaterQualityData} />
                     ) : (
                         <p className="text-center text-gray-600 py-8">Không có dữ liệu chất lượng nước để hiển thị biểu đồ.</p>
                     )}
@@ -1681,18 +1367,16 @@ const DataManagementTab = ({
             </div>
 
             <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                <h3 className="text-xl font-semibold text-yellow-800 mb-3">{t('data.type.weather')}</h3>
+                <h3 className="text-xl font-semibold text-yellow-800 mb-3">Dữ liệu Dự báo Thời tiết</h3>
                 <button
                     className="px-4 py-2 bg-yellow-600 text-white font-bold rounded-lg shadow-md hover:bg-yellow-700 transition-colors w-full mb-4"
                     onClick={() => openImportModal('weather')}
                 >
-                    {t('data.type.weather.import.title')}
+                    Nhập Dữ liệu Thời tiết (JSON)
                 </button>
                 <div className="bg-slate-50 p-4 rounded-lg shadow-inner border border-slate-200 h-80">
                     {filteredWeatherForecast.length > 0 ? (
-                        <WeatherChart data={filteredWeatherForecast}
-                                      t={t}
-                        />
+                        <WeatherChart data={filteredWeatherForecast} />
                     ) : (
                         <p className="text-center text-gray-600 py-8">Không có dữ liệu dự báo thời tiết để hiển thị biểu đồ.</p>
                     )}
@@ -1707,18 +1391,16 @@ const DataManagementTab = ({
             </div>
 
             <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                <h3 className="text-xl font-semibold text-purple-800 mb-3">{t('data.type.usage')}</h3>
+                <h3 className="text-xl font-semibold text-purple-800 mb-3">Dữ liệu Sử dụng Nước</h3>
                 <button
                     className="px-4 py-2 bg-purple-600 text-white font-bold rounded-lg shadow-md hover:bg-purple-700 transition-colors w-full mb-4"
                     onClick={() => openImportModal('usage')}
                 >
-                    {t('data.type.weather.import.title')}
+                    Nhập Dữ liệu Sử dụng Nước (JSON)
                 </button>
                 <div className="bg-slate-50 p-4 rounded-lg shadow-inner border border-slate-200 h-80">
                     {filteredWaterUsage.length > 0 ? (
-                        <UsageChart data={filteredWaterUsage}
-                                    t={t}
-                        />
+                        <UsageChart data={filteredWaterUsage} />
                     ) : (
                         <p className="text-center text-gray-600 py-8">Không có dữ liệu sử dụng nước để hiển thị biểu đồ.</p>
                     )}
@@ -1769,7 +1451,6 @@ const DataManagementTab = ({
             setWeatherForecast={setWeatherForecast}
             setWaterUsage={setWaterUsage}
             setAllWellForecasts={setAllWellForecasts}
-            t={t}
         />
 
         <ConsolidatedDataTable
@@ -1778,7 +1459,6 @@ const DataManagementTab = ({
             weatherForecast={weatherForecast}
             waterUsage={waterUsage}
             wellLocations={wellLocations}
-            t={t}
         />
 
         <div className="mt-8 p-6 bg-white rounded-xl shadow-lg border border-slate-200">
@@ -1829,7 +1509,7 @@ const DataManagementTab = ({
                     Chúng sử dụng các mẫu lịch sử và mối quan hệ giữa các yếu tố để đưa ra dự đoán.
                 </p>
                 <p className="text-slate-600 mb-4">
-                    Để xem kiến trúc, tham số chi tiết và lịch sử học tập của mô hình, vui lòng chuyển đến tab {t('nav.prediction')} và {t('nav.knowledge')}. Tại đó, bạn có thể tương tác trực tiếp với hàm AI và theo dõi hiệu suất của nó.
+                    Để xem kiến trúc, tham số chi tiết và lịch sử học tập của mô hình, vui lòng chuyển đến tab "Dự báo & Tối ưu hóa AI" và "Học tập & Tri thức AI". Tại đó, bạn có thể tương tác trực tiếp với hàm AI và theo dõi hiệu suất của nó.
                 </p>
             </div>
         </div>
@@ -1853,8 +1533,7 @@ const PredictionOptimizationTab = ({
     aiModelSpecificData, setAiModelSpecificData,
     setAiFunctionError, setIsAiFunctionChecked,
     db, userId, appId, // Pass db, userId, appId for Firestore operations
-    futureCiBounds, bootstrapStartStep, handleBootstrapStartStepChange,
-    t
+    futureCiBounds, bootstrapStartStep, handleBootstrapStartStepChange
 }) => {
     // Derive current well's predictions for display
     const sevenDayGroundwaterPrediction = useMemo(() => {
@@ -2033,7 +1712,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
     return (
         <React.Fragment>
             <div className="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
-                <h2 className="text-3xl font-bold mb-6 text-slate-800">{t('ai.prediction.title')}</h2>
+                <h2 className="text-3xl font-bold mb-6 text-slate-800">Dự báo & Tối ưu hóa AI</h2>
                 <p className="text-slate-600 mb-6">
                     AI sẽ học cách dự báo mực nước ngầm và đề xuất các hành động quản lý bền vững dựa trên dữ liệu sensor.
                 </p>
@@ -2067,7 +1746,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                         </div>
                     </div>
 
-                    <h3 className="text-lg font-bold mb-2 text-slate-700">{t('ai.model.select')}:</h3>
+                    <h3 className="text-lg font-bold mb-2 text-slate-700">Chọn Mô hình Dự đoán:</h3>
                     <div className="flex flex-wrap gap-4">
                         <label className="inline-flex items-center">
                             <input
@@ -2078,7 +1757,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 checked={selectedPredictionModel === 'general'}
                                 onChange={() => handleModelChange('general')} // UPDATED
                             />
-                            <span className="ml-2 text-slate-700">{t('ai.model.general')}</span>
+                            <span className="ml-2 text-slate-700">Tổng quát (AI tự do)</span>
                         </label>
                         <label className="inline-flex items-center">
                             <input
@@ -2089,7 +1768,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 checked={selectedPredictionModel === 'arima'}
                                 onChange={() => handleModelChange('arima')} // UPDATED
                             />
-                            <span className="ml-2 text-slate-700">{t('ai.model.arima')}</span>
+                            <span className="ml-2 text-slate-700">ARIMA (AI hướng dẫn)</span>
                         </label>
                         <label className="inline-flex items-center">
                             <input
@@ -2100,13 +1779,13 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 checked={selectedPredictionModel === 'gaussian_process'}
                                 onChange={() => handleModelChange('gaussian_process')} // UPDATED
                             />
-                            <span className="ml-2 text-slate-700">{t('ai.model.gp')}</span>
+                            <span className="ml-2 text-slate-700">Gaussian Process (AI hướng dẫn)</span>
                         </label>
                     </div>
 
                     {selectedPredictionModel === 'arima' && (
                         <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                            <h4 className="text-md font-semibold text-gray-700 mb-2">{t('ai.params')} (p, d, q):</h4>
+                            <h4 className="text-md font-semibold text-gray-700 mb-2">Tham số ARIMA (p, d, q):</h4>
                             <div className="flex gap-4">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">p:</label>
@@ -2157,7 +1836,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                         </div>
                     )}
 
-                    <h3 className="text-lg font-bold mt-6 mb-2 text-slate-700">{t('ai.prompt.mode')}:</h3>
+                    <h3 className="text-lg font-bold mt-6 mb-2 text-slate-700">Chế độ Prompt AI:</h3>
                     <div className="flex flex-wrap gap-4">
                         <label className="inline-flex items-center">
                             <input
@@ -2168,7 +1847,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 checked={promptMode === 'high-end'}
                                 onChange={() => setPromptMode('high-end')}
                             />
-                            <span className="ml-2 text-slate-700">{t('ai.prompt.high')}</span>
+                            <span className="ml-2 text-slate-700">High-End (Phân tích sâu, học hỏi mạnh mẽ)</span>
                         </label>
                         <label className="inline-flex items-center">
                             <input
@@ -2179,7 +1858,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 checked={promptMode === 'mid-end'}
                                 onChange={() => setPromptMode('mid-end')}
                             />
-                            <span className="ml-2 text-slate-700">{t('ai.prompt.mid')}</span>
+                            <span className="ml-2 text-slate-700">Mid-End (Phân tích cân bằng, cải thiện)</span>
                         </label>
                         <label className="inline-flex items-center">
                             <input
@@ -2190,14 +1869,14 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 checked={promptMode === 'low-end'}
                                 onChange={() => setPromptMode('low-end')}
                             />
-                            <span className="ml-2 text-slate-700">{t('ai.prompt.low')}</span>
+                            <span className="ml-2 text-slate-700">Low-End (Đơn giản, tập trung sửa lỗi)</span>
                         </label>
                     </div>
                 </div>
 
                 <div className="mb-6">
                     <label htmlFor="user-hint" className="block text-slate-700 text-sm font-bold mb-2">
-                        {t('ai.hint.label')}:
+                        Gợi ý của Người dùng (cho AI):
                     </label>
                     <textarea
                         id="user-hint"
@@ -2219,7 +1898,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 <div className="block bg-gray-300 w-14 h-8 rounded-full transition-all duration-300 peer-checked:bg-blue-600"></div>
                                 <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition-all duration-300 peer-checked:translate-x-full"></div>
                             </div>
-                            <span className="ml-3 text-gray-700 font-medium">{t('ai.toggle.hint')}</span>
+                            <span className="ml-3 text-gray-700 font-medium">AI phân tích và đưa ra gợi ý người dùng (dựa trên lỗi hiện tại)</span>
                         </label>
                     </div>
                 </div>
@@ -2239,7 +1918,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 <span>AI đang tạo hàm...</span>
                             </div>
                         ) : (
-                            `${t('ai.btn.generate')} ${aiIterationCount + 1}`
+                            `AI Tạo/Cải thiện Hàm Dự đoán (Lần lặp ${aiIterationCount + 1})`
                         )}
                     </button>
                     <button
@@ -2247,14 +1926,14 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                         onClick={handleCheckPrediction}
                         disabled={isGeneratingAiFunction || !selectedWellId}
                     >
-                        {t('ai.check')}
+                        Kiểm tra Dự đoán
                     </button>
                     <button
                         className="px-6 py-3 bg-gray-500 text-white font-bold rounded-lg shadow-md hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         onClick={handleRevertToLastValidAiFunction}
                         disabled={!aiModelSpecificData[selectedPredictionModel]?.lastValidState || isGeneratingAiFunction}
                     >
-                        {t('ai.btn.revert')}
+                        Hoàn tác về Hàm hợp lệ cuối cùng
                     </button>
                 </div>
 
@@ -2265,7 +1944,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                     </div>
                 )}
 
-                <h3 className="text-2xl font-bold mb-4 text-slate-800">{t('ai.code.title')}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-800">Hàm Dự đoán AI (JavaScript)</h3>
                 <p className="text-slate-600 mb-4">
                     AI sẽ tự động tạo và tối ưu hóa hàm JavaScript này để dự đoán mực nước ngầm.
                 </p>
@@ -2280,25 +1959,25 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                     <br/>{'}'}</code></pre>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-4 text-slate-800">{t('ai.explanation')} (Ngôn ngữ tự nhiên)</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-800">Giải thích AI (Ngôn ngữ tự nhiên)</h3>
                 <MarkdownRendererComponent
                     content={aiNaturalLanguageExplanation}
                     placeholderText="AI sẽ cung cấp giải thích về hàm và học thuyết của nó ở đây."
                 />
 
-                <h3 className="text-2xl font-bold mb-4 text-slate-800">{t('ai.theory.title')}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-800">Học thuyết AI</h3>
                 <MarkdownRendererComponent
                     content={aiTheory}
                     placeholderText="Học thuyết cốt lõi của AI về hành vi mực nước ngầm sẽ xuất hiện ở đây."
                 />
 
-                <h3 className="text-2xl font-bold mb-4 text-slate-800">{t('ai.metrics.title')}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-slate-800">Sai số Dự đoán</h3>
                 <p className="text-slate-600 mb-4">
                     Theo dõi sai số giữa giá trị thực tế và giá trị dự đoán của AI.
                 </p>
                 <div className="mt-4 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-md border border-blue-200">
                     <label htmlFor="bootstrap-step-slider" className="block text-xl font-bold text-blue-800 mb-3">
-                        {t('ai.pi.title')}
+                        Kiểm soát Khoảng Dự đoán (PI)
                     </label>
                     <div className="flex items-center space-x-4 mb-3">
                         <span className="text-2xl font-semibold text-indigo-700 w-24">
@@ -2337,9 +2016,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                 </div>
                 <div className="bg-slate-50 p-4 rounded-lg shadow-inner border border-slate-200 h-80 mb-6">
                     {predictionChartData.length > 0 ? (
-                        <PredictionRecharts data={predictionChartData}
-                                            t={t}
-                        />
+                        <PredictionRecharts data={predictionChartData} />
                     ) : (
                         <p className="text-center text-gray-600 py-8">Không có dữ liệu dự đoán để hiển thị biểu đồ.</p>
                     )}
@@ -2365,9 +2042,9 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                                 <thead>
                                     <tr>
                                         <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Thời gian</th>
-                                        <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('ai.table.historical')} ({t('ai.table.gwl-unit')} bgs)</th>
-                                        <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('ai.table.predicted')} ({t('ai.table.gwl-unit')} bgs)</th>
-                                        <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('ai.table.errors')} ({t('ai.table.gwl-unit')})</th>
+                                        <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Thực tế (m bgs)</th>
+                                        <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Dự đoán (m bgs)</th>
+                                        <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Sai số (m)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -2396,8 +2073,7 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
 const SustainabilityComplianceTab = ({ filteredGroundwaterData, filteredWaterQualityData, filteredWaterUsage, showMessage, selectedWellId,
     onGenerateSustainabilityInsights, sustainabilityInsights, isGeneratingSustainabilityInsights,
     sevenDayGroundwaterPrediction, // This will now be derived from allWellForecasts
-    sevenDayGroundwaterPredictionDates, // This will now be derived from allWellForecasts
-    t
+    sevenDayGroundwaterPredictionDates // This will now be derived from allWellForecasts
 }) => {
     // Placeholder for sustainability thresholds
     const MIN_GWL_THRESHOLD = 10; // meters below ground surface
@@ -2463,16 +2139,16 @@ const SustainabilityComplianceTab = ({ filteredGroundwaterData, filteredWaterQua
 
         let reportContent = `# Báo cáo Tuân thủ Bền vững cho Giếng: ${selectedWellId}\n\n`;
         reportContent += `Ngày báo cáo: ${new Date().toLocaleDateString('vi-VN')}\n\n`;
-        reportContent += `## 1. ${t('dashboard.gwl.title')}\n`;
+        reportContent += `## 1. Mực nước ngầm (GWL)\n`;
         reportContent += `- Mực nước ngầm trung bình: ${averageGwl} m bgs\n`;
         reportContent += `- Ngưỡng tối thiểu được khuyến nghị: ${MIN_GWL_THRESHOLD} m bgs\n`;
         reportContent += `- Trạng thái tuân thủ: **${renderComplianceStatus(isGwlCompliant)}**\n\n`;
 
-        reportContent += `## 2. ${t('dashboard.ec.title')}\n`;
+        reportContent += `## 2. Độ dẫn điện (EC)\n`;
         reportContent += `- Ngưỡng tối đa được khuyến nghị: ${MAX_EC_THRESHOLD} µS/cm\n`;
         reportContent += `- Trạng thái tuân thủ: **${renderComplianceStatus(isEcCompliant)}**\n\n`;
 
-        reportContent += `## 3. ${t('dashboard.ph.title')}\n`;
+        reportContent += `## 3. Độ pH Chất lượng Nước\n`;
         reportContent += `- Ngưỡng pH được khuyến nghị: ${MIN_PH_THRESHOLD} - ${MAX_PH_THRESHOLD}\n`;
         reportContent += `- Trạng thái tuân thủ: **${renderComplianceStatus(isPhCompliant)}**\n\n`;
 
@@ -2511,13 +2187,13 @@ const SustainabilityComplianceTab = ({ filteredGroundwaterData, filteredWaterQua
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
 
-        showMessage(t('common.success'), 'Báo cáo tuân thủ đã được tạo và tải xuống dưới dạng tệp Markdown.', 'success');
+        showMessage('Thành công', 'Báo cáo tuân thủ đã được tạo và tải xuống dưới dạng tệp Markdown.', 'success');
     }, [selectedWellId, filteredGroundwaterData, filteredWaterQualityData, filteredWaterUsage, averageGwl, isGwlCompliant, isEcCompliant, isPhCompliant, showMessage, renderComplianceStatus]);
 
 
     return (
         <div className="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
-            <h2 className="text-3xl font-bold mb-6 text-slate-800">{t('sustainability.title')}</h2>
+            <h2 className="text-3xl font-bold mb-6 text-slate-800">Bền vững & Tuân thủ</h2>
             <p className="text-slate-600 mb-6">
                 Đánh giá hiệu suất giếng dựa trên các chỉ số bền vững và tạo báo cáo tuân thủ.
             </p>
@@ -2530,10 +2206,10 @@ const SustainabilityComplianceTab = ({ filteredGroundwaterData, filteredWaterQua
                             <span className="font-bold">Mực nước ngầm trung bình (GWL):</span> {averageGwl} m bgs
                         </p>
                         <p className="text-sm text-slate-600">
-                            {t('sustainability.thresholds')}: {MIN_GWL_THRESHOLD} m bgs
+                            Ngưỡng tối thiểu: {MIN_GWL_THRESHOLD} m bgs
                         </p>
                         <p className={`font-bold ${renderComplianceTextColor(isGwlCompliant)}`}>
-                            {t('sustainability.status')}: {renderComplianceStatus(isGwlCompliant)}
+                            Trạng thái GWL: {renderComplianceStatus(isGwlCompliant)}
                         </p>
                     </div>
                     <div>
@@ -2592,7 +2268,7 @@ const SustainabilityComplianceTab = ({ filteredGroundwaterData, filteredWaterQua
                             <span>Đang tạo thông tin...</span>
                         </div>
                     ) : (
-                        `${t('sustainability.recommendation.button')}`
+                        'Tạo Chi tiết & Đề xuất Tối ưu hóa (bởi AI)'
                     )}
                 </button>
             </div>
@@ -2604,7 +2280,7 @@ const SustainabilityComplianceTab = ({ filteredGroundwaterData, filteredWaterQua
                 />
             </CollapsibleSection>
 
-            <CollapsibleSection title={t('sustainability.recommendation')}>
+            <CollapsibleSection title="Đề xuất Tối ưu hóa">
                 <MarkdownRendererComponent
                     content={sustainabilityInsights?.recommendations}
                     placeholderText="AI sẽ đưa ra các đề xuất tối ưu hóa ở đây."
@@ -2614,22 +2290,22 @@ const SustainabilityComplianceTab = ({ filteredGroundwaterData, filteredWaterQua
     );
 };
 
-const AILearningInsightsTab = ({ aiTheoryHistory, aiTheory, aiNaturalLanguageExplanation, predictionErrors, selectedPerformanceMetric, t }) => {
+const AILearningInsightsTab = ({ aiTheoryHistory, aiTheory, aiNaturalLanguageExplanation, predictionErrors, selectedPerformanceMetric }) => {
     return (
         <div className="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
-            <h2 className="text-3xl font-bold mb-6 text-slate-800">{t('nav.knowledge')}</h2>
+            <h2 className="text-3xl font-bold mb-6 text-slate-800">Học tập & Tri thức AI</h2>
             <p className="text-slate-600 mb-6">
                 Theo dõi quá trình học tập của AI, các học thuyết được tích lũy và những hiểu biết được rút ra từ dữ liệu.
             </p>
 
-            <CollapsibleSection title={t('ai.theory.title')}>
+            <CollapsibleSection title="Học thuyết AI hiện tại">
                 <MarkdownRendererComponent
                     content={aiTheory}
                     placeholderText="Học thuyết cốt lõi của AI về hành vi mực nước ngầm sẽ xuất hiện ở đây."
                 />
             </CollapsibleSection>
 
-            <CollapsibleSection title={t('ai.explanation.title')}>
+            <CollapsibleSection title="Giải thích AI hiện tại">
                 <MarkdownRendererComponent
                     content={aiNaturalLanguageExplanation}
                     placeholderText="AI sẽ cung cấp giải thích về hàm và học thuyết của nó ở đây."
@@ -2642,12 +2318,12 @@ const AILearningInsightsTab = ({ aiTheoryHistory, aiTheory, aiNaturalLanguageExp
                         <table className="min-w-full bg-white border border-gray-200 rounded-lg">
                             <thead>
                                 <tr>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('history.iteration')}</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Lần lặp</th>
                                     <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700"> {selectedPerformanceMetric == 'rmse' ? `RMSE (m)` : selectedPerformanceMetric == 'mse' ? `MSE (m²)` : `MAE (m)`}</th>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('history.model')}</th>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('history.theory')})</th>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('history.explanation')}</th>
-                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">{t('history.params')}</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Mô hình</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Học thuyết (Tóm tắt)</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Giải thích (Tóm tắt)</th>
+                                    <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Tham số ARIMA</th>
                                     <th className="py-2 px-4 border-b text-left text-sm font-semibold text-gray-700">Kernel GP</th>
                                 </tr>
                             </thead>
@@ -2660,9 +2336,9 @@ const AILearningInsightsTab = ({ aiTheoryHistory, aiTheory, aiNaturalLanguageExp
                                         <tr key={index}>
                                             <td className="py-2 px-4 border-b text-sm text-gray-800">{entry.iteration}</td>
                                             <td className={`py-2 px-4 border-b text-sm font-semibold ${hasError ? 'text-red-600' : (Math.abs(metric) > 0.5 ? 'text-yellow-600' : 'text-green-600')}`}>
-                                                {hasError ? t('common.error') : metric.toFixed(2)}
+                                                {hasError ? 'Lỗi' : metric.toFixed(2)}
                                             </td>
-                                            <td className="py-2 px-4 border-b text-sm text-gray-800">{entry.modelType === 'general' ? t('ai.model.general') : entry.modelType.toUpperCase()}</td>
+                                            <td className="py-2 px-4 border-b text-sm text-gray-800">{entry.modelType === 'general' ? 'Tổng quát' : entry.modelType.toUpperCase()}</td>
                                             <td className="py-2 px-4 border-b text-sm text-gray-800">
                                                 {entry.theory ? `${truncateToLines(entry.theory, 2)}` : 'N/A'}
                                             </td>
@@ -2695,7 +2371,7 @@ const AILearningInsightsTab = ({ aiTheoryHistory, aiTheory, aiNaturalLanguageExp
     );
 };
 
-const GISTab = ({ wellLocations, groundwaterData, waterQualityData, weatherForecast, waterUsage, selectedWellId, setSelectedWellId, showMessage, t }) => {
+const GISTab = ({ wellLocations, groundwaterData, waterQualityData, weatherForecast, waterUsage, selectedWellId, setSelectedWellId, showMessage }) => {
     const mapRef = useRef(null);
     const tileLayerRef = useRef(null);
     const markersRef = useRef([]);
@@ -2805,7 +2481,7 @@ const GISTab = ({ wellLocations, groundwaterData, waterQualityData, weatherForec
 
             <div className="mb-6">
                 <label htmlFor="well-select-map" className="block text-slate-700 text-sm font-bold mb-2">
-                    {t('gis.select.label')}:
+                    Chọn giếng để tập trung trên bản đồ:
                 </label>
                 <select
                     id="well-select-map"
@@ -2843,13 +2519,12 @@ const StatisticalValidationTab = React.memo(({
     rawGroundwaterAcfData,
     aiStatisticalAnalysis,
     isCalculatingStatistics,
-    filteredGroundwaterData, // Pass raw groundwater data for its chart
-    t
+    filteredGroundwaterData // Pass raw groundwater data for its chart
 }) => {
     return (
         <div className="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
             <h2 className="text-3xl font-bold mb-6 text-slate-800">
-                {t('stats.title')}: {selectedPredictionModel === 'general' ? t('ai.model.general') : selectedPredictionModel === 'arima' ? t('ai.model.arima') : t('ai.model.gp')}
+                Kiểm định Thống kê cho Mô hình: {selectedPredictionModel === 'general' ? 'Tổng quát' : selectedPredictionModel === 'arima' ? 'ARIMA' : 'Gaussian Process'}
             </h2>
 
             {isCalculatingStatistics && (
@@ -2860,7 +2535,7 @@ const StatisticalValidationTab = React.memo(({
 
             {!isCalculatingStatistics && (
                 <>
-                    <CollapsibleSection title={t('stats.residuals')} initialOpen={true}>
+                    <CollapsibleSection title="Thống kê Phần dư Cơ bản" initialOpen={true}>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-slate-700">
                             <div>
                                 <span className="font-semibold">Trung bình Phần dư:</span> {meanResidual.toFixed(4)}
@@ -2882,39 +2557,31 @@ const StatisticalValidationTab = React.memo(({
                             <div>
                                 <h3 className="text-lg font-semibold mb-2 text-slate-700">1. Phần dư theo Thời gian (Residuals vs. Time)</h3>
                                 {historicalPredictionResults.length > 0 ? (
-                                    <ResidualsVsTimeChart data={historicalPredictionResults}
-                                                          t={t}
-                                    />
+                                    <ResidualsVsTimeChart data={historicalPredictionResults} />
                                 ) : (
                                     <p className="text-slate-600">Không có dữ liệu phần dư để hiển thị. Hãy thử kiểm tra dự đoán AI.</p>
                                 )}
                             </div>
                             <div>
-                                <h3 className="text-lg font-semibold mb-2 text-slate-700">2. {t('stats.histogram')}</h3>
+                                <h3 className="text-lg font-semibold mb-2 text-slate-700">2. Phân phối Phần dư (Histogram)</h3>
                                 {histogramBinsData.length > 0 ? (
-                                    <ResidualsHistogramChart data={histogramBinsData}
-                                                             t={t}
-                                    />
+                                    <ResidualsHistogramChart data={histogramBinsData} />
                                 ) : (
                                     <p className="text-slate-600">Không có dữ liệu tần suất phần dư để hiển thị.</p>
                                 )}
                             </div>
                             <div>
-                                <h3 className="text-lg font-semibold mb-2 text-slate-700">3. {t('stats.qq')}</h3>
+                                <h3 className="text-lg font-semibold mb-2 text-slate-700">3. Biểu đồ QQ Plot của Phần dư</h3>
                                 {qqPlotData.length > 0 ? (
-                                    <QQPlotChart data={qqPlotData}
-                                                 t={t}
-                                    />
+                                    <QQPlotChart data={qqPlotData} />
                                 ) : (
                                     <p className="text-slate-600">Không có dữ liệu QQ Plot của phần dư để hiển thị.</p>
                                 )}
                             </div>
                             <div>
-                                <h3 className="text-lg font-semibold mb-2 text-slate-700">4. {t('stats.acf')}</h3>
+                                <h3 className="text-lg font-semibold mb-2 text-slate-700">4. Tự tương quan của Phần dư (ACF Plot)</h3>
                                 {acfResidualsData.length > 0 ? (
-                                    <ACFPlotChart data={acfResidualsData}
-                                                  t={t}
-                                    />
+                                    <ACFPlotChart data={acfResidualsData} />
                                 ) : (
                                     <p className="text-slate-600">Không có dữ liệu tự tương quan của phần dư để hiển thị.</p>
                                 )}
@@ -2960,30 +2627,13 @@ const StatisticalValidationTab = React.memo(({
 
 function App() {
     const [isFirebaseEnabled, setIsFirebaseEnabled] = useState(false);
-    
-    // QUẢN LÝ NGÔN NGỮ (Mặc định: Tiếng Anh)
-    // [THAY ĐỔI]: Khởi tạo ngôn ngữ từ LocalStorage hoặc mặc định là 'en'
-    const [currentLanguage, setCurrentLanguage] = useState(() => {
-        return localStorage.getItem(STORAGE_KEY_LANG) || 'en';
-    });
-    
-    // [THAY ĐỔI]: Tự động lưu vào LocalStorage mỗi khi ngôn ngữ thay đổi
-    useEffect(() => {
-        localStorage.setItem(STORAGE_KEY_LANG, currentLanguage);
-        // Cập nhật thuộc tính lang của thẻ html để hỗ trợ SEO/Trợ năng
-        document.documentElement.lang = currentLanguage;
-    }, [currentLanguage]);
-    
-    // Hàm t() helper dùng trong App
-    const t = useCallback((key) => getTranslation(currentLanguage, key), [currentLanguage]);
-    
     // --- State Variables ---
     const [currentTab, setCurrentTab] = useState('dashboard'); // 'dashboard', 'data-management', 'prediction-optimization', 'sustainability-compliance', 'ai-learning-insights', 'gis', 'statistical-validation'
 
     // Firebase related states
     const [db, setDb] = useState(null);
     const [auth, setAuth] = useState(null);
-    const [userId, setUserId] = useState(null);
+    const [userId, setUserId] = useState("09943658684084029073"); // Firebase user ID
     const [dataStorageMode, setDataStorageMode] = useState('local'); // 'local' or 'firestore'
 
     // Data States
@@ -3270,7 +2920,7 @@ function App() {
             showMessage('Hệ thống', 'Firebase chưa được cấu hình. Chế độ Lưu trữ đám mây sẽ bị vô hiệu hóa.', 'warning');
         }
     }, [showMessage]);
-
+    
     // --- Data Filtering for Display ---
     const filteredGroundwaterData = useMemo(() => {
         return groundwaterData.filter(d => d.wellId === selectedWellId)
@@ -3391,7 +3041,7 @@ function App() {
             setAiStatisticalAnalysis(data.aiStatisticalAnalysis || '');
 
 
-            showMessage(t('common.success'), 'Đã tải phiên làm việc.', 'success');
+            showMessage('Thành công', 'Đã tải phiên làm việc.', 'success');
         } else {
             showMessage('Thông báo', 'Không có dữ liệu phiên để tải.', 'info');
         }
@@ -3435,7 +3085,7 @@ function App() {
         };
 
         if (dataStorageMode === 'local') {
-            showMessage('Thông báo', t('msg.session.download'), 'info');
+            showMessage('Thông báo', 'Đang bắt đầu tải xuống tệp phiên làm việc. Vui lòng kiểm tra thư mục tải xuống của bạn.', 'info');
             const blob = new Blob([JSON.stringify(sessionData, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -3447,15 +3097,15 @@ function App() {
             URL.revokeObjectURL(url);
         } else if (dataStorageMode === 'firestore') {
             if (!db || !userId) {
-                showMessage(t('common.error'), t('msg.error.auth'), 'error');
+                showMessage('Lỗi', 'Không thể lưu phiên. Vui lòng đăng nhập hoặc kết nối Firebase.', 'error');
                 return;
             }
             try {
                 const sessionDocRef = doc(db, `artifacts/${appId}/users/${userId}/sessions/current_session`);
                 await setDoc(sessionDocRef, sessionData);
-                showMessage(t('common.success'), t('msg.session.saved'), 'success');
+                showMessage('Thành công', 'Phiên làm việc đã được lưu vào Đám mây.', 'success');
             } catch (error) {
-                showMessage(t('common.error'), `Không thể lưu phiên vào Đám mây: ${error.message}`, 'error');
+                showMessage('Lỗi', `Không thể lưu phiên vào Đám mây: ${error.message}`, 'error');
                 console.error("Error saving session to Firestore:", error);
             }
         }
@@ -3485,13 +3135,13 @@ function App() {
                                 const loadedData = JSON.parse(event.target.result);
                                 processLoadedSessionData(loadedData);
                             } catch (parseError) {
-                                showMessage(t('common.error'), `Không thể phân tích tệp JSON: ${parseError.message}`, 'error');
+                                showMessage('Lỗi', `Không thể phân tích tệp JSON: ${parseError.message}`, 'error');
                                 console.error("Error parsing JSON file:", parseError);
                             }
                         };
                         reader.readAsText(file);
                     } catch (error) {
-                        showMessage(t('common.error'), `Không thể đọc tệp: ${error.message}`, 'error');
+                        showMessage('Lỗi', `Không thể đọc tệp: ${error.message}`, 'error');
                         console.error("Error reading file:", error);
                     }
                 }
@@ -3499,7 +3149,7 @@ function App() {
             input.click();
         } else if (dataStorageMode === 'firestore') {
             if (!db || !userId) {
-                showMessage(t('common.error'), t('msg.error.auth'), 'error');
+                showMessage('Lỗi', 'Không thể tải phiên. Vui lòng đăng nhập hoặc kết nối Firebase.', 'error');
                 return;
             }
             try {
@@ -3511,7 +3161,7 @@ function App() {
                     showMessage('Thông báo', 'Không tìm thấy phiên làm việc đã lưu trong Đám mây.', 'info');
                 }
             } catch (error) {
-                showMessage(t('common.error'), `Không thể tải phiên từ Đám mây: ${error.message}`, 'error');
+                showMessage('Lỗi', `Không thể tải phiên từ Đám mây: ${error.message}`, 'error');
                 console.error("Error loading session from Firestore:", error);
             }
         }
@@ -3631,26 +3281,25 @@ function App() {
 
                 // Prepare prompt for AI analysis of statistics
                 const p_body = JSON.stringify({
-                                selectedPredictionModel: selectedPredictionModel, 
-                                selectedWellId: selectedWellId, 
-                                meanCurrentResiduals: calculateMean(currentResiduals).toFixed(4), 
-                                stdCurrentResiduals: calculateStandardDeviation(currentResiduals).toFixed(4), 
-                                sknCurrentResiduals: calculateSkewness(currentResiduals).toFixed(4), 
-                                ktsCurrentResiduals: calculateKurtosis(currentResiduals).toFixed(4), 
-                                acfCurrentResiduals: JSON.stringify(calculateACF(currentResiduals, 3).map(d => ({ lag: d.lag, value: d.value.toFixed(4) }))), 
-                                acfRawGwlValues: JSON.stringify(calculateACF(rawGwlValues, 3).map(d => ({ lag: d.lag, value: d.value.toFixed(4) }))),
-                                arimaParams: arimaParams
-                            });
-                
-                const apiKey = ""; // Canvas will provide this
+                    selectedPredictionModel: selectedPredictionModel, 
+                    selectedWellId: selectedWellId, 
+                    meanCurrentResiduals: calculateMean(currentResiduals).toFixed(4), 
+                    stdCurrentResiduals: calculateStandardDeviation(currentResiduals).toFixed(4), 
+                    sknCurrentResiduals: calculateSkewness(currentResiduals).toFixed(4), 
+                    ktsCurrentResiduals: calculateKurtosis(currentResiduals).toFixed(4), 
+                    acfCurrentResiduals: JSON.stringify(calculateACF(currentResiduals, 3).map(d => ({ lag: d.lag, value: d.value.toFixed(4) }))), 
+                    acfRawGwlValues: JSON.stringify(calculateACF(rawGwlValues, 3).map(d => ({ lag: d.lag, value: d.value.toFixed(4) }))),
+                    arimaParams: arimaParams
+                });
+
+                const apiKey = ""; // Canvas will provide API key
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                 const response = await fetch(`${FETCH_API_URL}/api/v2/ai2_fetch/raw_text`, {
                     method: 'POST',
                     headers: { 
                         'Content-Type': 'application/json',
-                        'X-Client-Key': FETCH_CLIENT_KEY, // Khóa xác thực Backend
+                        'X-Client-Key': FETCH_CLIENT_KEY
                     },
-                    // Gửi chuỗi prompt đã được xây dựng cho Backend
                     body: p_body
                 });
                 const rawText = await response.text();
@@ -3666,7 +3315,7 @@ function App() {
             } catch (error) {
                 console.error("Lỗi khi tính toán thống kê hoặc gọi AI:", error);
                 setAiStatisticalAnalysis(`Lỗi khi tạo phân tích thống kê: ${error.message}`);
-                showMessage(t('common.error'), `Lỗi khi tạo phân tích thống kê: ${error.message}`, 'error');
+                showMessage('Lỗi', `Lỗi khi tạo phân tích thống kê: ${error.message}`, 'error');
             } finally {
                 setIsCalculatingStatistics(false);
             }
@@ -3800,15 +3449,14 @@ function App() {
         });
 
         try {
-            const apiKey = ""; // Canvas will provide this
+            const apiKey = ""; // Canvas will provide API key
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
             const response = await fetch(`${FETCH_API_URL}/api/v2/ai3_fetch/raw_text`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'X-Client-Key': FETCH_CLIENT_KEY, // Khóa xác thực Backend
+                    'X-Client-Key': FETCH_CLIENT_KEY
                 },
-                // Gửi chuỗi prompt đã được xây dựng cho Backend
                 body: p_body
             });
             const rawText = await response.text();
@@ -3835,21 +3483,6 @@ function App() {
                     }
                     // --- END NEW ---
                     setIsGeneratingAiFunction(false); // Stop loading spinner
-
-                    setAiPredictionFunctionBody(parsedResponse.functionBody);
-                    setAiTheory(parsedResponse.theory);
-                    setAiNaturalLanguageExplanation(parsedResponse.explanation);
-                    setAiIterationCount(prev => prev + 1);
-                    setAiFunctionError(null);
-
-                    // Update ARIMA or GP parameters if AI suggests them
-                    if (parsedResponse.optimalArimaParams && selectedPredictionModel === 'arima') {
-                        setArimaParams(parsedResponse.optimalArimaParams);
-                    }
-                    if (parsedResponse.optimalGpKernelType && selectedPredictionModel === 'gaussian_process') {
-                        setGpKernelType(parsedResponse.optimalGpKernelType); 
-                    }
-                    
                     // Crucially, if JSON parsing fails, the prediction function cannot be extracted or run.
                     // So we must clear previous predictions to reflect this broken state.
                     setAllWellForecasts(prev => ({
@@ -3912,7 +3545,7 @@ function App() {
                             bootstrapStartStep: prev[selectedWellId] ? prev[selectedWellId].bootstrapStartStep : 0
                         }
                     }));
-                    showMessage(t('common.success'), `Hàm dự đoán AI đã được tạo/cải thiện và dự đoán ${PREDICTING_PERIOD} ngày tới đã được tạo.`, 'success');
+                    showMessage('Thành công', `Hàm dự đoán AI đã được tạo/cải thiện và dự đoán ${PREDICTING_PERIOD} ngày tới đã được tạo.`, 'success');
 
                 } catch (predictionExecutionError) {
                     const errorMessage = `Lỗi khi tạo dự đoán ban đầu từ hàm AI mới: ${predictionExecutionError.message}. Hàm có thể không chính xác.`;
@@ -3936,7 +3569,7 @@ function App() {
                         ...prev,
                         [selectedWellId]: { predictions: [], dates: [], errors: [], metrics: {}, futureCiBounds: [], bootstrapStartStep: prev[selectedWellId] ? prev[selectedWellId].bootstrapStartStep : 0 }
                     }));
-                    showMessage(t('common.error'), `Hàm dự đoán AI đã được tạo nhưng kết quả ban đầu không hợp lệ: ${predictionExecutionError.message}`, 'error');
+                    showMessage('Lỗi', `Hàm dự đoán AI đã được tạo nhưng kết quả ban đầu không hợp lệ: ${predictionExecutionError.message}`, 'error');
                 }
                 
                 // Set last valid state for the current model if the initial prediction was valid
@@ -3957,7 +3590,7 @@ function App() {
 
             } else {
                 setAiFunctionError('Không nhận được phản hồi hợp lệ từ AI.');
-                showMessage(t('common.error'), 'Không nhận được phản hồi hợp lệ từ AI.', 'error');
+                showMessage('Lỗi', 'Không nhận được phản hồi hợp lệ từ AI.', 'error');
                 console.error("AI response missing candidates or content:", result);
                 setAllWellForecasts(prev => ({
                     ...prev,
@@ -3966,7 +3599,7 @@ function App() {
             }
         } catch (error) {
             setAiFunctionError(`Lỗi khi gọi AI: ${error.message}`);
-            showMessage(t('common.error'), `Lỗi khi tạo hàm AI: ${error.message}`, 'error');
+            showMessage('Lỗi', `Lỗi khi tạo hàm AI: ${error.message}`, 'error');
             console.error("Error generating AI function:", error);
             setAllWellForecasts(prev => ({
                 ...prev,
@@ -4180,7 +3813,7 @@ function App() {
             });
 
             setIsAiFunctionChecked(true); // Mark as checked
-            showMessage(t('common.success'), 'Dự đoán AI đã được kiểm tra và kết quả đã sẵn sàng.', 'success');
+            showMessage('Thành công', 'Dự đoán AI đã được kiểm tra và kết quả đã sẵn sàng.', 'success');
 
             setAiTheoryHistory(prevHistory => {
                 const newEntry = {
@@ -4230,19 +3863,15 @@ function App() {
                         method: 'POST',
                         headers: { 
                             'Content-Type': 'application/json',
-                            'X-Client-Key': FETCH_CLIENT_KEY, // Khóa xác thực Backend
+                            'X-Client-Key': FETCH_CLIENT_KEY
                         },
-                        // Gửi chuỗi prompt đã được xây dựng cho Backend
                         body: JSON.stringify({
-                            // Tên key này phải khớp với data.get('promptForFunction') trong Python
                             promptForFunction: hintPrompt
                         })
                     });
-
                     const rawText = await response.text();
                     let hintResult;
                     hintResult = JSON.parse(rawText);
-                    
                     if (hintResult.candidates && hintResult.candidates.length > 0 && hintResult.candidates[0].content && hintResult.candidates[0].content.parts && hintResult.candidates[0].content.parts.length > 0) {
                         setUserHint(hintResult.candidates[0].content.parts[0].text);
                         showMessage('Gợi ý AI', 'AI đã đưa ra gợi ý mới dựa trên sai số dự đoán.', 'info');
@@ -4271,7 +3900,7 @@ function App() {
             }
             // --- END NEW ---
 
-            showMessage(t('common.error'), `Lỗi khi kiểm tra dự đoán: ${error.message}`, 'error');
+            showMessage('Lỗi', `Lỗi khi kiểm tra dự đoán: ${error.message}`, 'error');
         } finally {
             setIsGeneratingAiFunction(false);
         }
@@ -4293,7 +3922,7 @@ function App() {
             
             setAiFunctionError(null);
             setIsAiFunctionChecked(false); // Mark as unchecked to encourage re-checking
-            showMessage(t('common.success'), `Đã hoàn tác về hàm AI hợp lệ cuối cùng cho mô hình ${selectedPredictionModel === 'general' ? 'Tổng quát' : selectedPredictionModel.toUpperCase()}.`, 'success');
+            showMessage('Thành công', `Đã hoàn tác về hàm AI hợp lệ cuối cùng cho mô hình ${selectedPredictionModel === 'general' ? 'Tổng quát' : selectedPredictionModel.toUpperCase()}.`, 'success');
         } else {
             showMessage('Thông báo', `Không có hàm AI hợp lệ nào trước đó cho mô hình ${selectedPredictionModel === 'general' ? 'Tổng quát' : selectedPredictionModel.toUpperCase()} để hoàn tác.`, 'info');
         }
@@ -4329,6 +3958,68 @@ function App() {
         \`\`\`
         `;
 
+        const payload = {
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            generationConfig: {
+                responseMimeType: "application/json",
+                responseSchema: {
+                    type: "OBJECT",
+                    properties: {
+                        "groundwaterData": {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    "wellId": { "type": "STRING" },
+                                    "timestamp": { "type": "STRING" },
+                                    "gwl": { "type": "NUMBER" },
+                                    "ec": { "type": "NUMBER" }
+                                }
+                            }
+                        },
+                        "waterQualityData": {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    "wellId": { "type": "STRING" },
+                                    "timestamp": { "type": "STRING" },
+                                    "ph": { "type": "NUMBER" },
+                                    "do": { "type": "NUMBER" },
+                                    "turbidity": { "type": "NUMBER" }
+                                }
+                            }
+                        },
+                        "weatherForecast": {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    "wellId": { "type": "STRING" },
+                                    "timestamp": { "type": "STRING" },
+                                    "precipitation": { "type": "NUMBER" },
+                                    "temperature": { "type": "NUMBER" }
+                                }
+                            }
+                        },
+                        "waterUsage": {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    "wellId": { "type": "STRING" },
+                                    "timestamp": { "type": "STRING" },
+                                    "pumping": { "type": "NUMBER" },
+                                    "consumption": { "type": "NUMBER" }
+                                }
+                            }
+                        }
+                    },
+                    required: ["groundwaterData", "waterQualityData", "weatherForecast", "waterUsage"]
+                }
+            }
+        };
+
         try {
             const apiKey = ""; // Canvas will provide API key
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
@@ -4336,9 +4027,8 @@ function App() {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'X-Client-Key': FETCH_CLIENT_KEY, // Khóa xác thực Backend
+                    'X-Client-Key': FETCH_CLIENT_KEY
                 },
-                // Gửi chuỗi prompt đã được xây dựng cho Backend
                 body: JSON.stringify({
                     // Tên key này phải khớp với data.get('promptForFunction') trong Python
                     promptForFunction: prompt, 
@@ -4404,7 +4094,6 @@ function App() {
                     }
                 })
             });
-
             const rawText = await response.text();
             let result;
             result = JSON.parse(rawText);
@@ -4444,13 +4133,13 @@ function App() {
                 setWeatherForecast(mergeData(currentWeather, parsedData.weatherForecast || []));
                 setWaterUsage(mergeData(currentWaterUsage, parsedData.waterUsage || []));
 
-                showMessage(t('common.success'), 'Dữ liệu khả tín đã được tạo và thêm vào.', 'success');
+                showMessage('Thành công', 'Dữ liệu khả tín đã được tạo và thêm vào.', 'success');
             } else {
-                showMessage(t('common.error'), 'Không nhận được dữ liệu khả tín hợp lệ từ AI.', 'error');
+                showMessage('Lỗi', 'Không nhận được dữ liệu khả tín hợp lệ từ AI.', 'error');
                 console.error("AI response missing candidates or content:", result);
             }
         } catch (error) {
-            showMessage(t('common.error'), `Lỗi khi tạo dữ liệu khả tín: ${error.message}`, 'error');
+            showMessage('Lỗi', `Lỗi khi tạo dữ liệu khả tín: ${error.message}`, 'error');
             console.error("Error generating plausible data:", error);
         } finally {
             setIsGeneratingPlausibleData(false);
@@ -4489,28 +4178,26 @@ function App() {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'X-Client-Key': FETCH_CLIENT_KEY, // Khóa xác thực Backend
+                    'X-Client-Key': FETCH_CLIENT_KEY
                 },
-                // Gửi chuỗi prompt đã được xây dựng cho Backend
                 body: JSON.stringify({
                     // Tên key này phải khớp với data.get('promptForFunction') trong Python
                     promptForFunction: currentPrompt
                 })
             });
-
             const rawText = await response.text();
             let result;
             result = JSON.parse(rawText);
             if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
                 setAiDataSchemaExplanation(result.candidates[0].content.parts[0].text);
                 setFollowUpSchemaQuestion(''); // Clear the input after asking
-                showMessage(t('common.success'), 'Giải thích lược đồ dữ liệu đã được tạo.', 'success');
+                showMessage('Thành công', 'Giải thích lược đồ dữ liệu đã được tạo.', 'success');
             } else {
-                showMessage(t('common.error'), 'Không nhận được giải thích lược đồ dữ liệu hợp lệ từ AI.', 'error');
+                showMessage('Lỗi', 'Không nhận được giải thích lược đồ dữ liệu hợp lệ từ AI.', 'error');
                 console.error("AI response missing candidates or content:", result);
             }
         } catch (error) {
-            showMessage(t('common.error'), `Lỗi khi tạo giải thích lược đồ dữ liệu: ${error.message}`, 'error');
+            showMessage('Lỗi', `Lỗi khi tạo giải thích lược đồ dữ liệu: ${error.message}`, 'error');
             console.error("Error generating data schema explanation:", error);
         } finally {
             setIsGeneratingDataSchemaExplanation(false);
@@ -4551,9 +4238,9 @@ function App() {
         
         // Convert boolean/null compliance status to Vietnamese string for AI
         const getComplianceStatusString = (status) => {
-            if (status === null) return t('sustainability.insufficient');
-            if (status === true) return t('sustainability.compliant');
-            return t('sustainability.noncompliant');
+            if (status === null) return 'Không đủ dữ liệu';
+            if (status === true) return 'ĐẠT';
+            return 'KHÔNG ĐẠT';
         };
 
         const complianceStatus = {
@@ -4572,7 +4259,7 @@ function App() {
 
 
         const prompt = `Bạn là một chuyên gia về bền vững và môi trường, đặc biệt là trong quản lý tài nguyên nước.
-        Hãy phân tích dữ liệu và trạng thái tuân thủ sau cho giếng ${selectedWellId} và tạo ra "Chi tiết Tuân thủ", "${t('sustainability.recommendation')}" và một "Đề xuất Dashboard" ngắn gọn.
+        Hãy phân tích dữ liệu và trạng thái tuân thủ sau cho giếng ${selectedWellId} và tạo ra "Chi tiết Tuân thủ", "Đề xuất Tối ưu hóa" và một "Đề xuất Dashboard" ngắn gọn.
         
         **Dữ liệu hiện có:**
         - Dữ liệu mực nước ngầm: ${JSON.stringify(filteredGroundwaterData)}
@@ -4597,18 +4284,34 @@ function App() {
 
         **Nhiệm vụ:**
         1.  **"Chi tiết Tuân thủ"**: Viết một phần giải thích chi tiết bằng Markdown, phân tích tình hình tuân thủ hiện tại. Nêu rõ các điểm đã ĐẠT, KHÔNG ĐẠT hoặc KHÔNG ĐỦ DỮ LIỆU. Nếu có vi phạm, hãy phân tích xu hướng hoặc các giá trị cụ thể gây ra vấn đề. Nếu có đủ dữ liệu, hãy phân tích mối quan hệ giữa các yếu tố (ví dụ: lượng bơm và GWL).
-        2.  **"${t('sustainability.recommendation')}"**: Viết một phần bằng Markdown, đưa ra các đề xuất cụ thể, khả thi để cải thiện các chỉ số bền vững và khắc phục các vi phạm tuân thủ (nếu có). Các đề xuất nên dựa trên dữ liệu, DỰ BÁO ${PREDICTING_PERIOD} NGÀY TỚI và lý do rõ ràng. Ví dụ: "Giảm lượng bơm thêm X% trong tháng tới", "Xem xét các phương pháp xử lý để giảm độ dẫn điện", "Tiến hành phân tích sâu hơn về nguồn gây ra pH bất thường". Nếu không đủ dữ liệu, hãy đề xuất thu thập thêm dữ liệu.
+        2.  **"Đề xuất Tối ưu hóa"**: Viết một phần bằng Markdown, đưa ra các đề xuất cụ thể, khả thi để cải thiện các chỉ số bền vững và khắc phục các vi phạm tuân thủ (nếu có). Các đề xuất nên dựa trên dữ liệu, DỰ BÁO ${PREDICTING_PERIOD} NGÀY TỚI và lý do rõ ràng. Ví dụ: "Giảm lượng bơm thêm X% trong tháng tới", "Xem xét các phương pháp xử lý để giảm độ dẫn điện", "Tiến hành phân tích sâu hơn về nguồn gây ra pH bất thường". Nếu không đủ dữ liệu, hãy đề xuất thu thập thêm dữ liệu.
         3.  **"Đề xuất Dashboard"**: Tạo một câu ngắn gọn (tối đa 2 dòng), trực tiếp, mang tính hành động để duy trì các chỉ số bền vững trong ${PREDICTING_PERIOD} ngày tới dựa trên dự báo hiện có. Đây là đề xuất được hiển thị trên Dashboard Tổng quan. Nếu không có đủ dữ liệu để đưa ra đề xuất cụ thể, hãy đề xuất thu thập thêm dữ liệu hoặc kiểm tra dữ liệu. Ví dụ: "Giảm lượng bơm 10% trong tuần tới để duy trì mực nước ngầm trên 12m bgs." hoặc "Tăng cường theo dõi chất lượng nước do dự báo EC sẽ tăng nhẹ."
 
         Định dạng phản hồi của bạn phải là JSON với các trường sau:
         \`\`\`json
         {
             "details": "/* Nội dung Markdown cho Chi tiết Tuân thủ */",
-            "recommendations": "/* Nội dung Markdown cho ${t('sustainability.recommendation')} */",
+            "recommendations": "/* Nội dung Markdown cho Đề xuất Tối ưu hóa */",
             "dashboardRecommendation": "/* Nội dung Markdown ngắn gọn cho Đề xuất Dashboard */"
         }
         \`\`\`
         `;
+
+        const payload = {
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            generationConfig: {
+                responseMimeType: "application/json",
+                responseSchema: {
+                    type: "OBJECT",
+                    properties: {
+                        "details": { "type": "STRING" },
+                        "recommendations": { "type": "STRING" },
+                        "dashboardRecommendation": { "type": "STRING" } // New field for dashboard
+                    },
+                    required: ["details", "recommendations", "dashboardRecommendation"] // Now required
+                }
+            }
+        };
 
         try {
             const apiKey = ""; // Canvas will provide API key
@@ -4617,9 +4320,8 @@ function App() {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'X-Client-Key': FETCH_CLIENT_KEY, // Khóa xác thực Backend
+                    'X-Client-Key': FETCH_CLIENT_KEY
                 },
-                // Gửi chuỗi prompt đã được xây dựng cho Backend
                 body: JSON.stringify({
                     // Tên key này phải khớp với data.get('promptForFunction') trong Python
                     promptForFunction: prompt, 
@@ -4639,7 +4341,6 @@ function App() {
                     }
                 })
             });
-
             const rawText = await response.text();
             let result;
             result = JSON.parse(rawText);
@@ -4658,13 +4359,13 @@ function App() {
                 });
                 // Update dashboard recommendation with the concise text
                 setAiDashboardRecommendation(parsedResponse.dashboardRecommendation || '');
-                showMessage(t('common.success'), `AI đã tạo chi tiết tuân thủ và ${t('sustainability.recommendation')}.`, 'success');
+                showMessage('Thành công', 'AI đã tạo chi tiết tuân thủ và đề xuất tối ưu hóa.', 'success');
             } else {
-                showMessage(t('common.error'), 'Không nhận được thông tin bền vững hợp lệ từ AI.', 'error');
+                showMessage('Lỗi', 'Không nhận được thông tin bền vững hợp lệ từ AI.', 'error');
                 console.error("AI response missing candidates or content for sustainability insights:", result);
             }
         } catch (error) {
-            showMessage(t('common.error'), `Lỗi khi tạo thông tin bền vững: ${error.message}`, 'error');
+            showMessage('Lỗi', `Lỗi khi tạo thông tin bền vững: ${error.message}`, 'error');
             console.error("Error generating sustainability insights:", error);
         } finally {
             setIsGeneratingSustainabilityInsights(false);
@@ -4797,7 +4498,7 @@ function App() {
         }
 
 
-        showMessage(messageType === 'success' ? t('common.success') : 'Thông báo', successMessage, messageType);
+        showMessage(messageType === 'success' ? 'Thành công' : 'Thông báo', successMessage, messageType);
         closeImportModal();
 
         // Automatically select a well from imported data if it's new, or stick to current
@@ -4822,37 +4523,20 @@ function App() {
         <div className="min-h-screen bg-gray-100 font-sans antialiased text-gray-900">
             <header className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-6 shadow-lg">
                 <div className="container mx-auto flex justify-between items-center">
-                    <h1 className="text-3xl font-bold">{t('app.title')}</h1>
+                    <h1 className="text-3xl font-bold">Hệ thống Quan trắc & Dự đoán Mực nước ngầm</h1>
                     <div className="flex items-center space-x-4">
-                        {/* Nút chuyển đổi ngôn ngữ */}
-                        <button 
-                            onClick={() => setCurrentLanguage(prev => LANGUAGE_MAP[prev])}
-                            className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-sm font-bold border border-white/50 transition flex items-center gap-2"
-                        >
-                            {/* Dùng Map để lấy Icon và t() để lấy tên ngôn ngữ tiếp theo */}
-                            <span>{LANGUAGE_ICONS[LANGUAGE_MAP[currentLanguage]]}</span>
-                            <span>{t(`language.${LANGUAGE_MAP[currentLanguage]}`)}</span>
-                        </button>
                         <div className="flex flex-col gap-4">
                             <span className="text-sm">User ID: {userId || 'Đang tải...'}</span>
                             <span className="text-sm">App ID: {appId || 'Đang tải...'}</span>
                         </div>
                         <div className="relative inline-block text-left">
                             <select
-                                // Thêm key={language} vào đây. Khi language thay đổi (en <-> vi), 
-                                // React sẽ hủy select cũ và vẽ lại select mới cùng các option mới.
-                                key={currentLanguage} 
                                 className="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-800"
                                 value={dataStorageMode}
-                                // Sửa disable ở đây: chỉ disable khi không có firebase và 
-                                // ĐANG KHÔNG ở chế độ firestore để người dùng có thể thoát ra chọn 'local'
-                                disabled={!isFirebaseEnabled && dataStorageMode !== 'firestore'}
                                 onChange={(e) => setDataStorageMode(e.target.value)}
                             >
-                                <option value="local">{t('app.storage.local')}</option>
-                                <option value="firestore" disabled={!isFirebaseEnabled}>
-                                    {t('app.storage.firestore')} {!isFirebaseEnabled && `(${t('app.storage.not_configured') || 'Chưa cấu hình'})`}
-                                </option>
+                                <option value="local">Chế độ Tệp cục bộ</option>
+                                <option value="firestore">Chế độ Đám mây (Firestore)</option>
                             </select>
                         </div>
                         <button
@@ -4860,14 +4544,14 @@ function App() {
                             onClick={handleSaveSession}
                             disabled={dataStorageMode === 'firestore' && (!db || !userId)}
                         >
-                            {t('header.btn.save')}
+                            Lưu Phiên làm việc
                         </button>
                         <button
                             className="px-4 py-2 bg-purple-500 text-white font-bold rounded-lg shadow-md hover:bg-purple-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                             onClick={handleLoadSession}
                             disabled={dataStorageMode === 'firestore' && (!db || !userId)}
                         >
-                            {t('header.btn.load')}
+                            Tải Phiên làm việc
                         </button>
                     </div>
                 </div>
@@ -4880,43 +4564,43 @@ function App() {
                             className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentTab === 'dashboard' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'}`}
                             onClick={() => setCurrentTab('dashboard')}
                         >
-                            {t('nav.dashboard')}
+                            Dashboard
                         </button>
                         <button
                             className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentTab === 'data-management' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'}`}
                             onClick={() => setCurrentTab('data-management')}
                         >
-                            {t('nav.data')}
+                            Quản lý Dữ liệu
                         </button>
                         <button
                             className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentTab === 'prediction-optimization' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'}`}
                             onClick={() => setCurrentTab('prediction-optimization')}
                         >
-                            {t('nav.prediction')}
+                            Dự báo & Tối ưu AI
                         </button>
                         <button
                             className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentTab === 'sustainability-compliance' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'}`}
                             onClick={() => setCurrentTab('sustainability-compliance')}
                         >
-                            {t('nav.sustainability')}
+                            Bền vững & Tuân thủ
                         </button>
                         <button
                             className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentTab === 'ai-learning-insights' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'}`}
                             onClick={() => setCurrentTab('ai-learning-insights')}
                         >
-                            {t('nav.knowledge')}
+                            Học tập & Tri thức AI
                         </button>
                         <button
                             className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentTab === 'gis' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'}`}
                             onClick={() => setCurrentTab('gis')}
                         >
-                            {t('nav.gis')}
+                            GIS & Bản đồ
                         </button>
                         <button
                             className={`px-4 py-2 rounded-lg font-semibold transition-colors ${currentTab === 'statistical-validation' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-100'}`}
                             onClick={() => setCurrentTab('statistical-validation')}
                         >
-                            {t('nav.stats')}
+                            Kiểm định Thống kê
                         </button>
                     </div>
                 </div>
@@ -4932,7 +4616,6 @@ function App() {
                         selectedPredictionModel={selectedPredictionModel}
                         handleRefreshDashboard={handleRefreshDashboard}
                         aiDashboardRecommendation={aiDashboardRecommendation}
-                        t={t}
                     />
                 )}
                 {currentTab === 'data-management' && (
@@ -4968,7 +4651,6 @@ function App() {
                         setFollowUpSchemaQuestion={setFollowUpSchemaQuestion}
                         isGeneratingDataSchemaExplanation={isGeneratingDataSchemaExplanation} // Pass loading state
                         setAllWellForecasts={setAllWellForecasts}
-                        t={t}
                     />
                 )}
                 {currentTab === 'prediction-optimization' && (
@@ -5021,7 +4703,6 @@ function App() {
                         futureCiBounds={futureCiBounds}
                         bootstrapStartStep={bootstrapStartStep}
                         handleBootstrapStartStepChange={handleBootstrapStartStepChange}
-                        t={t}
                     />
                 )}
                 {currentTab === 'sustainability-compliance' && (
@@ -5036,7 +4717,6 @@ function App() {
                         isGeneratingSustainabilityInsights={isGeneratingSustainabilityInsights}
                         sevenDayGroundwaterPrediction={sevenDayGroundwaterPrediction} // Derived
                         sevenDayGroundwaterPredictionDates={sevenDayGroundwaterPredictionDates} // Derived
-                        t={t}
                     />
                 )}
                 {currentTab === 'ai-learning-insights' && (
@@ -5050,7 +4730,6 @@ function App() {
                         gpKernelType={gpKernelType}
                         predictionErrors={predictionErrors}
                         selectedPerformanceMetric={selectedPerformanceMetric}
-                        t={t}
                     />
                 )}
                 {currentTab === 'gis' && (
@@ -5063,7 +4742,6 @@ function App() {
                         selectedWellId={selectedWellId}
                         setSelectedWellId={setSelectedWellId}
                         showMessage={showMessage}
-                        t={t}
                     />
                 )}
                 {currentTab === 'statistical-validation' && (
@@ -5082,7 +4760,6 @@ function App() {
                         aiStatisticalAnalysis={aiStatisticalAnalysis}
                         isCalculatingStatistics={isCalculatingStatistics}
                         filteredGroundwaterData={filteredGroundwaterData}
-                        t={t}
                     />
                 )}
             </main>
@@ -5093,7 +4770,6 @@ function App() {
                 onClose={closeMessageModal}
                 title={messageModalContent.title}
                 message={messageModalContent.message}
-                t={t}
                 type={messageModalContent.type}
             />
             <ConfirmModal
@@ -5102,7 +4778,6 @@ function App() {
                 onConfirm={confirmModalContent.onConfirm}
                 title={confirmModalContent.title}
                 message={confirmModalContent.message}
-                t={t}
                 type={confirmModalContent.type}
             />
             <JsonInputModal
@@ -5116,7 +4791,6 @@ function App() {
                 onFileChange={handleFileChange}
                 errorMessage={importErrorMessage}
                 fileInputKey={fileInputKey.current}
-                t={t}
             />
         </div>
     );
