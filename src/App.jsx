@@ -3835,6 +3835,21 @@ function App() {
                     }
                     // --- END NEW ---
                     setIsGeneratingAiFunction(false); // Stop loading spinner
+
+                    setAiPredictionFunctionBody(parsedResponse.functionBody);
+                    setAiTheory(parsedResponse.theory);
+                    setAiNaturalLanguageExplanation(parsedResponse.explanation);
+                    setAiIterationCount(prev => prev + 1);
+                    setAiFunctionError(null);
+
+                    // Update ARIMA or GP parameters if AI suggests them
+                    if (parsedResponse.optimalArimaParams && selectedPredictionModel === 'arima') {
+                        setArimaParams(parsedResponse.optimalArimaParams);
+                    }
+                    if (parsedResponse.optimalGpKernelType && selectedPredictionModel === 'gaussian_process') {
+                        setGpKernelType(parsedResponse.optimalGpKernelType); 
+                    }
+                    
                     // Crucially, if JSON parsing fails, the prediction function cannot be extracted or run.
                     // So we must clear previous predictions to reflect this broken state.
                     setAllWellForecasts(prev => ({
