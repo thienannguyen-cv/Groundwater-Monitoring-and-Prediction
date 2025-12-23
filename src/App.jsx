@@ -3958,66 +3958,67 @@ function App() {
         \`\`\`
         `;
 
-        const payload = {
-            contents: [{ role: "user", parts: [{ text: prompt }] }],
-            generationConfig: {
-                responseMimeType: "application/json",
-                responseSchema: {
-                    type: "OBJECT",
-                    properties: {
-                        "groundwaterData": {
-                            type: "ARRAY",
-                            items: {
-                                type: "OBJECT",
-                                properties: {
-                                    "wellId": { "type": "STRING" },
-                                    "timestamp": { "type": "STRING" },
-                                    "gwl": { "type": "NUMBER" },
-                                    "ec": { "type": "NUMBER" }
-                                }
-                            }
-                        },
-                        "waterQualityData": {
-                            type: "ARRAY",
-                            items: {
-                                type: "OBJECT",
-                                properties: {
-                                    "wellId": { "type": "STRING" },
-                                    "timestamp": { "type": "STRING" },
-                                    "ph": { "type": "NUMBER" },
-                                    "do": { "type": "NUMBER" },
-                                    "turbidity": { "type": "NUMBER" }
-                                }
-                            }
-                        },
-                        "weatherForecast": {
-                            type: "ARRAY",
-                            items: {
-                                type: "OBJECT",
-                                properties: {
-                                    "wellId": { "type": "STRING" },
-                                    "timestamp": { "type": "STRING" },
-                                    "precipitation": { "type": "NUMBER" },
-                                    "temperature": { "type": "NUMBER" }
-                                }
-                            }
-                        },
-                        "waterUsage": {
-                            type: "ARRAY",
-                            items: {
-                                type: "OBJECT",
-                                properties: {
-                                    "wellId": { "type": "STRING" },
-                                    "timestamp": { "type": "STRING" },
-                                    "pumping": { "type": "NUMBER" },
-                                    "consumption": { "type": "NUMBER" }
-                                }
+        const generationConfig = {
+            responseMimeType: "application/json",
+            responseSchema: {
+                type: "OBJECT",
+                properties: {
+                    "groundwaterData": {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                "wellId": { "type": "STRING" },
+                                "timestamp": { "type": "STRING" },
+                                "gwl": { "type": "NUMBER" },
+                                "ec": { "type": "NUMBER" }
                             }
                         }
                     },
-                    required: ["groundwaterData", "waterQualityData", "weatherForecast", "waterUsage"]
-                }
+                    "waterQualityData": {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                "wellId": { "type": "STRING" },
+                                "timestamp": { "type": "STRING" },
+                                "ph": { "type": "NUMBER" },
+                                "do": { "type": "NUMBER" },
+                                "turbidity": { "type": "NUMBER" }
+                            }
+                        }
+                    },
+                    "weatherForecast": {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                "wellId": { "type": "STRING" },
+                                "timestamp": { "type": "STRING" },
+                                "precipitation": { "type": "NUMBER" },
+                                "temperature": { "type": "NUMBER" }
+                            }
+                        }
+                    },
+                    "waterUsage": {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                "wellId": { "type": "STRING" },
+                                "timestamp": { "type": "STRING" },
+                                "pumping": { "type": "NUMBER" },
+                                "consumption": { "type": "NUMBER" }
+                            }
+                        }
+                    }
+                },
+                required: ["groundwaterData", "waterQualityData", "weatherForecast", "waterUsage"]
             }
+        };
+        const payload = {
+            contents: [{ role: "user", parts: [{ text: prompt }] }],
+            generationConfig: generationConfig
         };
 
         try {
@@ -4034,65 +4035,8 @@ function App() {
                     promptForFunction: prompt, 
                 
                     // Tên key này phải khớp với data.get('generationConfig') trong Python
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "groundwaterData": {
-                                    type: "ARRAY",
-                                    items: {
-                                        type: "OBJECT",
-                                        properties: {
-                                            "wellId": { "type": "STRING" },
-                                            "timestamp": { "type": "STRING" },
-                                            "gwl": { "type": "NUMBER" },
-                                            "ec": { "type": "NUMBER" }
-                                        }
-                                    }
-                                },
-                                "waterQualityData": {
-                                    type: "ARRAY",
-                                    items: {
-                                        type: "OBJECT",
-                                        properties: {
-                                            "wellId": { "type": "STRING" },
-                                            "timestamp": { "type": "STRING" },
-                                            "ph": { "type": "NUMBER" },
-                                            "do": { "type": "NUMBER" },
-                                            "turbidity": { "type": "NUMBER" }
-                                        }
-                                    }
-                                },
-                                "weatherForecast": {
-                                    type: "ARRAY",
-                                    items: {
-                                        type: "OBJECT",
-                                        properties: {
-                                            "wellId": { "type": "STRING" },
-                                            "timestamp": { "type": "STRING" },
-                                            "precipitation": { "type": "NUMBER" },
-                                            "temperature": { "type": "NUMBER" }
-                                        }
-                                    }
-                                },
-                                "waterUsage": {
-                                    type: "ARRAY",
-                                    items: {
-                                        type: "OBJECT",
-                                        properties: {
-                                            "wellId": { "type": "STRING" },
-                                            "timestamp": { "type": "STRING" },
-                                            "pumping": { "type": "NUMBER" },
-                                            "consumption": { "type": "NUMBER" }
-                                        }
-                                    }
-                                }
-                            },
-                            required: ["groundwaterData", "waterQualityData", "weatherForecast", "waterUsage"]
-                        }
-                    }
-                })
+                    generationConfig: generationConfig
+                )
             });
             const rawText = await response.text();
             let result;
@@ -4297,20 +4241,21 @@ function App() {
         \`\`\`
         `;
 
+        const generationConfig = {
+            responseMimeType: "application/json",
+            responseSchema: {
+                type: "OBJECT",
+                properties: {
+                    "details": { "type": "STRING" },
+                    "recommendations": { "type": "STRING" },
+                    "dashboardRecommendation": { "type": "STRING" } // New field for dashboard
+                },
+                required: ["details", "recommendations", "dashboardRecommendation"] // Now required
+            }
+        };
         const payload = {
             contents: [{ role: "user", parts: [{ text: prompt }] }],
-            generationConfig: {
-                responseMimeType: "application/json",
-                responseSchema: {
-                    type: "OBJECT",
-                    properties: {
-                        "details": { "type": "STRING" },
-                        "recommendations": { "type": "STRING" },
-                        "dashboardRecommendation": { "type": "STRING" } // New field for dashboard
-                    },
-                    required: ["details", "recommendations", "dashboardRecommendation"] // Now required
-                }
-            }
+            generationConfig: generationConfig
         };
 
         try {
@@ -4327,18 +4272,7 @@ function App() {
                     promptForFunction: prompt, 
                 
                     // Tên key này phải khớp với data.get('generationConfig') trong Python
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                        responseSchema: {
-                            type: "OBJECT",
-                            properties: {
-                                "details": { "type": "STRING" },
-                                "recommendations": { "type": "STRING" },
-                                "dashboardRecommendation": { "type": "STRING" } // New field for dashboard
-                            },
-                            required: ["details", "recommendations", "dashboardRecommendation"] // Now required
-                        }
-                    }
+                    generationConfig: generationConfig
                 })
             });
             const rawText = await response.text();
