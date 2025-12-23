@@ -2858,7 +2858,7 @@ function App() {
             const unsubscribe = onAuthStateChanged(authInstance, async (user) => {
                 if (user) {
                     setUserId(user.uid);
-                    showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${user.uid}`, 'success');
+                    showMessage('Xác thực Firebase', `Đăng nhập thành công với User ID: ${user.uid}`, 'success');
                 } else {
                     try {
     
@@ -2866,12 +2866,12 @@ function App() {
                             await signInWithCustomToken(authInstance, initialAuthToken);
                             currentUserId = authInstance.currentUser?.uid || crypto.randomUUID();
                             setUserId(currentUserId); // Cập nhật userId sau khi đăng nhập
-                            showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${currentUserId}`, 'success');
+                            showMessage('Xác thực Firebase', `Đăng nhập thành công với User ID: ${currentUserId}`, 'success');
                         } else {
                             // Try to sign in anonymously if no user is authenticated
                             const anonymousUser = await signInAnonymously(authInstance);
                             setUserId(anonymousUser.user.uid);
-                            showMessage('Xác thực Firebase', `${t('header.login.success')}, User ID: ${anonymousUser.user.uid}`, 'success');
+                            showMessage('Xác thực Firebase', `Đăng nhập ẩn danh thành công với User ID: ${anonymousUser.user.uid}`, 'success');
                         }
                         
                     } catch (error) {
@@ -2904,7 +2904,7 @@ function App() {
                 signInAnonymously(authInstance)
                     .then(anonymousUser => {
                         setUserId(anonymousUser.user.uid);
-                        showMessage('Xác thực Firebase', `${t('header.login.anon')}: ${anonymousUser.user.uid}`, 'success');
+                        showMessage('Xác thực Firebase', `Đăng nhập ẩn danh thành công: ${anonymousUser.user.uid}`, 'success');
                     })
                     .catch(error => {
                         setUserId('anonymous-user-fallback');
