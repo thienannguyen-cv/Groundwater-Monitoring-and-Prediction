@@ -2269,6 +2269,10 @@ Thanh trượt cho phép bạn điều chỉnh cách kết hợp giữa hai phư
                 <p className="text-slate-600 mb-4">
                     AI sẽ tự động tạo và tối ưu hóa hàm JavaScript này để dự đoán mực nước ngầm.
                 </p>
+                <p className="text-slate-500 text-sm italic mb-4 bg-slate-50 p-3 rounded-md border-l-4 border-slate-300">
+                    <span className="font-semibold text-slate-600">Lưu ý:</span> Vì phần chữ ký (signature) của hàm luôn được cố định trong hệ thống, nội dung trong ô văn bản chỉ nên bao gồm phần thân hàm. 
+                    Nếu AI sinh ra cả phần chữ ký (ví dụ: <code>function predict(...) {'{'} ... {'}'}</code>), hãy xóa bỏ phần bao ngoài này để hàm được biên dịch thành công.
+                </p>
                 <div className="bg-gray-800 rounded-lg p-4 font-mono text-sm text-white overflow-x-auto mb-6">
                     <pre><code>{renderAiFunctionSignature()}<br/>
                         <textarea
