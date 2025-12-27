@@ -1405,7 +1405,7 @@ const ConsolidatedDataTable = ({ groundwaterData, waterQualityData, weatherForec
                         </table>
                     </div>
                 ) : (
-                    <p className="text-slate-600">Không có dữ liệu tổng hợp nào để hiển thị. Hãy thử tạo dữ liệu khả tín!</p>
+                    <p className="text-slate-600">Không có dữ liệu tổng hợp nào để hiển thị. Hãy thử tạo dữ liệu mô phỏng để thử các tính năng trong ứng dụng!</p>
                 )}
             </CollapsibleSection>
         </div>
@@ -1748,7 +1748,7 @@ const DataManagementTab = ({
                         <span>Đang tạo dữ liệu...</span>
                     </div>
                 ) : (
-                    'Đề xuất dữ liệu khả tín (bởi AI) cho giếng đã chọn'
+                    'Mô phỏng Dữ liệu (Simulation) cho giếng đã chọn'
                 )}
             </button>
         </div>
@@ -4306,7 +4306,7 @@ function App() {
 
     const handleSuggestPlausibleData = useCallback(async () => {
         if (!selectedWellId) {
-            showMessage('Cảnh báo', 'Vui lòng chọn một giếng để tạo dữ liệu khả tín.', 'warning');
+            showMessage('Cảnh báo', 'Vui lòng chọn một giếng để tạo dữ liệu mô phỏng.', 'warning');
             return;
         }
         setIsGeneratingPlausibleData(true);
@@ -4454,7 +4454,7 @@ function App() {
                 console.error("AI response missing candidates or content:", result);
             }
         } catch (error) {
-            showMessage(t('common.error'), `Lỗi khi tạo dữ liệu khả tín: ${error.message}`, 'error');
+            showMessage(t('common.error'), `Lỗi khi tạo dữ liệu mô phỏng: ${error.message}`, 'error');
             console.error("Error generating plausible data:", error);
         } finally {
             setIsGeneratingPlausibleData(false);
